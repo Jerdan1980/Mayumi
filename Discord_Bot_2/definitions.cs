@@ -15,7 +15,7 @@ namespace Discord_Bot_2
         [Command("urbandefine"), Description("defines something using urban dictionary")]
         public async Task UrbanDefine(CommandContext ctx, string query)
         {
-            string url = "http://www.thefreedictionary.com/" + input;
+            string url = "http://www.thefreedictionary.com/" + query;
             HtmlWeb web = new HtmlWeb();
             HtmlDocument doc = web.Load(url);
             string word = doc.DocumentNode.SelectNodes("//*[@id=\"content\"]/div/h1")[0].InnerText;
@@ -23,6 +23,14 @@ namespace Discord_Bot_2
             string definition = doc.DocumentNode.SelectNodes("//*[@id=\"Definition\"]/section[1]/div[1]/div[1]")[0].InnerText;
             string output = "__**" + word.ToUpperInvariant() + "**__ _(" + type + ")_\n" + definition;
             await ctx.RespondAsync(output);
+        }
+
+        [Command("name"), Description("finds the etymology of a name")]
+        public async Task Name(CommandContext ctx, string query)
+        {
+            string url = "http://behindthename.com/name/" + query;
+            HtmlWeb web = new HtmlWeb();
+            HtmlDocument doc = web.Load(url);
         }
     }
 }

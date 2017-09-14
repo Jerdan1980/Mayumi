@@ -49,7 +49,7 @@ namespace Discord_Bot
             commands.CommandErrored += Commands_Errored;
             //command service
             commands.RegisterCommands<Discord_Bot_2.Greetings>();
-            commands.RegisterCommands<Discord_Bot_2.definitions>
+            commands.RegisterCommands<Discord_Bot_2.definitions>();
 
             //start program
             await discord.ConnectAsync();
