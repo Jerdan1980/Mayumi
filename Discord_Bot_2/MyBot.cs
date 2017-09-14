@@ -4,13 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DSharpPlus;
+using DSharpPlus.CommandsNext;
 
 namespace Discord_Bot
 {
-    class Program
+    class MyBot
     {
-        //declares discord client
+        //declarations
         static DiscordClient discord;
+        static CommandsNextModule commands;
 
         static void Main(string[] args)
         {
@@ -22,13 +24,18 @@ namespace Discord_Bot
             //instatiates discord client
             discord = new DiscordClient(new DiscordConfiguration {
                 Token = "",
-                TokenType = TokenType.Bot
+                TokenType = TokenType.Bot,
+                UseInternalLogHandler = true,
+                LogLevel = LogLevel.Debug
             });
 
-            discord.MessageCreated += async e => {
-                if(e.Message.Content.ToLower().StartsWith("ping"))
-                    await e.Message.RespondAsync("pong");
-            };
+            //command string
+            commands = discord.UseCommandsNext(new CommandsNextConfiguration {
+                StringPrefix = ";;",
+                EnableMentionPrefix = true
+            });
+
+            commands.RegisterCommands<MyBot>();
 
             await discord.ConnectAsync();
             await Task.Delay(-1);
