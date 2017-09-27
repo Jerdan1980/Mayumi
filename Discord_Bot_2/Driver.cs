@@ -9,35 +9,43 @@ using DSharpPlus.CommandsNext;
 using DSharpPlus.CommandsNext.Exceptions;
 using DSharpPlus.Entities;
 using DSharpPlus.EventArgs;
+using DSharpPlus.VoiceNext;
 
 namespace Discord_Bot
 {
-    class MyBot
+    class Driver
     {
         //declarations
         static DiscordClient discord;
         static CommandsNextModule commands;
+        static VoiceNextClient voice;
 
+        //to run the program
         public static void Main(string[] args)
         {
-            var prog = new MyBot();
+            var prog = new Driver();
             prog.MayumiAsync().GetAwaiter().GetResult();
         }
 
+        //actual program
         public async Task MayumiAsync()
         {
             //instatiates discord client
             discord = new DiscordClient(new DiscordConfiguration {
-                Token = "",
+                Token = "MzE2MDg0MTU1MTgyMjE5MjY1.DKxCqg.CqhUlPJrPnxFbzb9f9EO_-HdG-c",
                 TokenType = TokenType.Bot,
                 AutoReconnect = true,
                 UseInternalLogHandler = true,
                 LogLevel = LogLevel.Debug
             });
+
             //error checking
             discord.Ready += Client_Ready;
             discord.ClientErrored += Client_Error;
-            
+
+            //enables voice
+            voice = discord.UseVoiceNext();
+
             //command string
             commands = discord.UseCommandsNext(new CommandsNextConfiguration {
                 StringPrefix = ".",
@@ -47,9 +55,14 @@ namespace Discord_Bot
             //errorchecking
             commands.CommandExecuted += Commands_Executed;
             commands.CommandErrored += Commands_Errored;
+
             //command service
             commands.RegisterCommands<Discord_Bot_2.Greetings>();
             commands.RegisterCommands<Discord_Bot_2.definitions>();
+            commands.RegisterCommands<Discord_Bot_2.diceRoll>();
+
+
+
 
             //start program
             await discord.ConnectAsync();

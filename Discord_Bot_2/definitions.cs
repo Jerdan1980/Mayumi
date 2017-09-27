@@ -31,6 +31,18 @@ namespace Discord_Bot_2
             string url = "http://behindthename.com/name/" + query;
             HtmlWeb web = new HtmlWeb();
             HtmlDocument doc = web.Load(url);
+            string rpl = "WIP";
+            await ctx.RespondAsync(rpl);
+        }
+
+        [Command("define"), Description("defines a word")]
+        public async Task Define(CommandContext ctx, string query)
+        {
+            string url = "" + query;
+            HtmlWeb web = new HtmlWeb();
+            HtmlDocument doc = web.Load(url);
+            string rpl = "WIP";
+            await ctx.RespondAsync(rpl);
         }
     }
 }
