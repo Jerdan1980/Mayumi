@@ -9,7 +9,7 @@ using DSharpPlus.CommandsNext;
 using DSharpPlus.CommandsNext.Exceptions;
 using DSharpPlus.Entities;
 using DSharpPlus.EventArgs;
-using DSharpPlus.VoiceNext;
+//using DSharpPlus.VoiceNext;
 
 namespace Discord_Bot
 {
@@ -18,7 +18,7 @@ namespace Discord_Bot
         //declarations
         static DiscordClient discord;
         static CommandsNextModule commands;
-        static VoiceNextClient voice;
+        //static VoiceNextClient voice;
 
         //to run the program
         public static void Main(string[] args)
@@ -44,7 +44,7 @@ namespace Discord_Bot
             discord.ClientErrored += Client_Error;
 
             //enables voice
-            voice = discord.UseVoiceNext();
+            //voice = discord.UseVoiceNext();
 
             //command string
             commands = discord.UseCommandsNext(new CommandsNextConfiguration {

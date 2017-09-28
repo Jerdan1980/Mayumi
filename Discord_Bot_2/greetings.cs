@@ -92,5 +92,8 @@ namespace Discord_Bot_2
         }
         [Command("echo"), Description("repeats"), Aliases("say")]
         public async Task Echo(CommandContext ctx, string output) => await ctx.RespondAsync(output);
+
+        [Command("time"), Description("tells time")]
+        public async Task Time(CommandContext ctx) => await ctx.RespondAsync("learn it yourself");
     }
 }
