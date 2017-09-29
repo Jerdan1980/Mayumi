@@ -103,17 +103,17 @@ namespace Discord_Bot_2
             //Cookie[File.ReadAllLines(res).Length] fortunes; 
             for(int i = 1; i < File.ReadAllLines(res).Length; i++)
             {
-                
+                await ctx.RespondAsync("WIP");
             }
         
         }
 
-        [Command("yes or no"), Description("answers yes or no"), Aliases("yn", "y/n", "8ball", "8 ball")]
+        [Command("8ball"), Description("answers yes or no"), Aliases("yn", "y/n")]
         public async Task YesNo(CommandContext ctx)
         {
             Random rng = new Random();
             string[] data = File.ReadAllLines(@"MayumiYesNo.txt");
-            var choice = rng.Next(data.Length + 1);
+            var choice = rng.Next(data.Length);
             await ctx.RespondAsync(data[choice]);
         }
     }
