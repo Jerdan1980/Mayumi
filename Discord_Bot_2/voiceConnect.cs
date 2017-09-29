@@ -24,7 +24,7 @@ namespace Discord_Bot_2
             if(vnc != null)
                 throw new InvalidOperationException("Already connected in this guild");
             var chn = ctx.Member?.VoiceState?.Channel;
-            if(chn != null)
+            if(chn == null)
                 throw new InvalidOperationException("You need to be in a voice channel");
             //notify
             await ctx.RespondAsync("I'm joined!");
@@ -37,6 +37,8 @@ namespace Discord_Bot_2
                 sound = "..\\resources\\voice_sample_use\\Hello.wav";
             else
                 sound = "..\\resources\\voice_sample_use\\Hello 2.wav";
+            if(File.Exists(sound))
+                throw new FileNotFoundException("File was not found");
             //open ffmpeg
             await vnc.SendSpeakingAsync(true);
             var psi = new ProcessStartInfo {
@@ -81,6 +83,8 @@ namespace Discord_Bot_2
                 sound = "..\\resources\\voice_sample_use\\Goodbye.wav";
             else
                 sound = "..\\resources\\voice_sample_use\\Goodbye 2.wav";
+            if(File.Exists(sound))
+                throw new FileNotFoundException("File was not found");
             //open ffmpeg
             await vnc.SendSpeakingAsync(true);
             var psi = new ProcessStartInfo {
