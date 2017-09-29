@@ -101,9 +101,9 @@ namespace Discord_Bot_2
         {
             String res = @"..\\resources\\textSpeech\\Fortune_Coookies.txt";
             //Cookie[File.ReadAllLines(res).Length] fortunes; 
-            for(int i; i < File.ReadAllLines(res).Length; i++)
+            for(int i = 0; i < File.ReadAllLines(res).Length; i++)
             {
-                
+                await ctx.RespondAsync("WIP");
             }
 
         }
