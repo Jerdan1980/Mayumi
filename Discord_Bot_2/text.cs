@@ -11,9 +11,9 @@ using DSharpPlus.Entities;
 namespace Discord_Bot_2
 {
     //misc stuff
-    public class Greetings
+    public class text
     {
-        [Command("hi"), Description("Says hello"), Aliases("hello", "hullo", "Hi", "Hello", "Hullo")]
+        [Command("hi"), Description("Says hello"), Aliases("hello", "hullo", "Hi", "Hello", "Hullo", "waddup")]
         public async Task Hi(CommandContext ctx)
         {
             Random rng = new Random();
@@ -95,5 +95,17 @@ namespace Discord_Bot_2
 
         [Command("time"), Description("tells time")]
         public async Task Time(CommandContext ctx) => await ctx.RespondAsync("learn it yourself");
+
+        [Command("fortune"), Description("gives a fortune cookie")]
+        public async Task Fortune(CommandContext ctx)
+        {
+            String res = @"..\\resources\\textSpeech\\Fortune_Coookies.txt";
+            //Cookie[File.ReadAllLines(res).Length] fortunes; 
+            for(int i; i < File.ReadAllLines(res).Length; i++)
+            {
+                
+            }
+
+        }
     }
 }

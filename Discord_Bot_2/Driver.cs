@@ -9,7 +9,7 @@ using DSharpPlus.CommandsNext;
 using DSharpPlus.CommandsNext.Exceptions;
 using DSharpPlus.Entities;
 using DSharpPlus.EventArgs;
-//using DSharpPlus.VoiceNext;
+using DSharpPlus.VoiceNext;
 
 namespace Discord_Bot
 {
@@ -18,7 +18,7 @@ namespace Discord_Bot
         //declarations
         static DiscordClient discord;
         static CommandsNextModule commands;
-        //static VoiceNextClient voice;
+        static VoiceNextClient voice;
 
         //to run the program
         public static void Main(string[] args)
@@ -44,7 +44,7 @@ namespace Discord_Bot
             discord.ClientErrored += Client_Error;
 
             //enables voice
-            //voice = discord.UseVoiceNext();
+            voice = discord.UseVoiceNext();
 
             //command string
             commands = discord.UseCommandsNext(new CommandsNextConfiguration {
@@ -57,9 +57,9 @@ namespace Discord_Bot
             commands.CommandErrored += Commands_Errored;
 
             //command service
-            commands.RegisterCommands<Discord_Bot_2.Greetings>();
+            commands.RegisterCommands<Discord_Bot_2.text>();
             commands.RegisterCommands<Discord_Bot_2.definitions>();
-            commands.RegisterCommands<Discord_Bot_2.diceRoll>();
+            commands.RegisterCommands<Discord_Bot_2.DnD>();
 
 
 
@@ -105,7 +105,7 @@ namespace Discord_Bot
                 await e.Context.RespondAsync("", embed: embed);
             } else
             {
-                await e.Context.RespondAsync("I DONT UNDERSTAND");
+                await e.Context.RespondAsync("Error. Please repeat the question.");
             }
         }
 
