@@ -113,7 +113,7 @@ namespace Discord_Bot_2
         {
             Random rng = new Random();
             string[] data = File.ReadAllLines(@"MayumiYesNo.txt");
-            var choice = rng.Next(data.Length + 1);
+            var choice = rng.Next(data.Length);
             await ctx.RespondAsync(data[choice]);
         }
     }
