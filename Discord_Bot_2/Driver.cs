@@ -57,9 +57,9 @@ namespace Discord_Bot
             commands.CommandErrored += Commands_Errored;
 
             //command service
-            commands.RegisterCommands<Discord_Bot_2.Greetings>();
+            commands.RegisterCommands<Discord_Bot_2.text>();
             commands.RegisterCommands<Discord_Bot_2.definitions>();
-            commands.RegisterCommands<Discord_Bot_2.diceRoll>();
+            commands.RegisterCommands<Discord_Bot_2.DnD>();
 
 
 
@@ -105,7 +105,7 @@ namespace Discord_Bot
                 await e.Context.RespondAsync("", embed: embed);
             } else
             {
-                await e.Context.RespondAsync("I DONT UNDERSTAND");
+                await e.Context.RespondAsync("Error. Please repeat the question.");
             }
         }
 

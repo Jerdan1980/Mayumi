@@ -9,7 +9,7 @@ using DSharpPlus.Entities;
 
 namespace Discord_Bot_2
 {
-    class diceRoll
+    class DnD
     {
         [Command("roll"), Description("rolls dice")]
         public async Task Roll(CommandContext ctx, string query)
