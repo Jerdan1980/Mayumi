@@ -96,7 +96,7 @@ namespace Discord_Bot_2
         [Command("time"), Description("tells time")]
         public async Task Time(CommandContext ctx) => await ctx.RespondAsync("learn it yourself");
 
-    /*    [Command("fortune"), Description("gives a fortune cookie")]
+        [Command("fortune"), Description("gives a fortune cookie")]
         public async Task Fortune(CommandContext ctx)
         {
             String res = @"..\\resources\\textSpeech\\Fortune_Coookies.txt";
@@ -106,7 +106,7 @@ namespace Discord_Bot_2
                 
             }
         
-        } */
+        }
 
         [Command("yes or no"), Description("answers yes or no"), Aliases("yn", "y/n", "8ball", "8 ball")]
         public async Task YesNo(CommandContext ctx)
