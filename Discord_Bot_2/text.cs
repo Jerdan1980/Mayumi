@@ -96,16 +96,25 @@ namespace Discord_Bot_2
         [Command("time"), Description("tells time")]
         public async Task Time(CommandContext ctx) => await ctx.RespondAsync("learn it yourself");
 
-        [Command("fortune"), Description("gives a fortune cookie")]
+    /*    [Command("fortune"), Description("gives a fortune cookie")]
         public async Task Fortune(CommandContext ctx)
         {
             String res = @"..\\resources\\textSpeech\\Fortune_Coookies.txt";
             //Cookie[File.ReadAllLines(res).Length] fortunes; 
-            for(int i; i < File.ReadAllLines(res).Length; i++)
+            for(int i = 1; i < File.ReadAllLines(res).Length; i++)
             {
                 
             }
+        
+        } */
 
+        [Command("yes or no"), Description("answers yes or no"), Aliases("yn", "y/n", "8ball", "8 ball")]
+        public async Task YesNo(CommandContext ctx)
+        {
+            Random rng = new Random();
+            string[] data = File.ReadAllLines(@"MayumiYesNo.txt");
+            var choice = rng.Next(data.Length + 1);
+            await ctx.RespondAsync(data[choice]);
         }
     }
 }
