@@ -60,7 +60,7 @@ namespace Discord_Bot
             commands.RegisterCommands<Discord_Bot_2.text>();
             commands.RegisterCommands<Discord_Bot_2.definitions>();
             commands.RegisterCommands<Discord_Bot_2.DnD>();
-
+            commands.RegisterCommands<Discord_Bot_2.voiceConnect>();
 
 
 
