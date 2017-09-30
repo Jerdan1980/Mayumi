@@ -10,6 +10,7 @@ using DSharpPlus.CommandsNext.Exceptions;
 using DSharpPlus.Entities;
 using DSharpPlus.EventArgs;
 using DSharpPlus.VoiceNext;
+using DSharpPlus.VoiceNext.Codec;
 
 namespace Discord_Bot
 {
@@ -44,7 +45,10 @@ namespace Discord_Bot
             discord.ClientErrored += Client_Error;
 
             //enables voice
-            voice = discord.UseVoiceNext();
+            var voiceConfig = new VoiceNextConfiguration {
+                VoiceApplication = VoiceApplication.Music
+            };
+            voice = discord.UseVoiceNext(voiceConfig);
 
             //command string
             commands = discord.UseCommandsNext(new CommandsNextConfiguration {
