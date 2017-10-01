@@ -23,13 +23,13 @@ namespace Discord_Bot_2
             var vnc = vNext.GetConnection(ctx.Guild);
             if(vnc != null)
             {
-                await ctx.RespondAsync("Already connected in this guild");
+                await ctx.RespondAsync("I'm already connected in this channel!");
                 return;
             }
             var chn = ctx.Member?.VoiceState?.Channel;
             if(chn == null)
             {
-                await ctx.RespondAsync("You need to be in a voice channel");
+                await ctx.RespondAsync("You need to be in a voice channel -_-");
                 return;
             }
             //notify
