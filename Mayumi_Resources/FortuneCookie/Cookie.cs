@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.IO;
 
-namespace Discord_Bot_2
+namespace Mayumi_Resources
 {
     class Cookie
     {
@@ -30,7 +30,14 @@ namespace Discord_Bot_2
 
         public static Cookie[] createObject()
         {
-            Cookie[] asdf = new Cookie[12];
+            string path = @"Fortune_Cookies.txt";
+            int len = File.ReadAllLines(path).Length;
+            Cookie[] asdf = new Cookie[len];
+            for(int i = 0; i < len; i++)
+            {
+                string inp = File.ReadAllLines(path)[i];
+                string[] tokens = inp.Split('\"');
+            }
             return asdf;
         }
     }

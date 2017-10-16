@@ -61,10 +61,10 @@ namespace Discord_Bot
             commands.CommandErrored += Commands_Errored;
 
             //command service
-            commands.RegisterCommands<Discord_Bot_2.text>();
-            commands.RegisterCommands<Discord_Bot_2.definitions>();
-            commands.RegisterCommands<Discord_Bot_2.DnD>();
-            commands.RegisterCommands<Discord_Bot_2.voiceConnect>();
+            commands.RegisterCommands<Discord_Bot.text>();
+            commands.RegisterCommands<Discord_Bot.definitions>();
+            commands.RegisterCommands<Discord_Bot.DnD>();
+            commands.RegisterCommands<Discord_Bot.voiceConnect>();
 
 
 
