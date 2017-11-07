@@ -11,6 +11,7 @@ using DSharpPlus.Entities;
 using DSharpPlus.EventArgs;
 using DSharpPlus.VoiceNext;
 using DSharpPlus.VoiceNext.Codec;
+//using System.Windows.Forms;
 
 namespace Discord_Bot
 {
@@ -22,18 +23,48 @@ namespace Discord_Bot
         static VoiceNextClient voice;
 
         //to run the program
+        [STAThread]
         public static void Main(string[] args)
         {
+            //grabs the token file
+            string token = "";
+
+            while(true)
+            {
+            Console.Out.Write(": ");
+            string fileName = Console.In.ReadLine();
+                if(System.IO.File.Exists(@fileName))
+                {
+                    token = System.IO.File.ReadAllLines(@fileName)[0];
+                    break;
+                } else
+                    Console.Out.WriteLine("Enter valid file.");
+            }
+
+            /*
+            OpenFileDialog fileDialog = new OpenFileDialog();
+            fileDialog.InitialDirectory = "c:\\";
+            fileDialog.Filter = "txt files (*.txt)|*.txt|custom file (*.dis)|*.dis";
+            fileDialog.FilterIndex = 2;
+            fileDialog.Multiselect = false;
+            fileDialog.Title = "Pick token file.";
+
+            if(fileDialog.ShowDialog() == DialogResult.OK)
+            {
+                token = System.IO.File.ReadAllLines(fileDialog.FileName)[0];
+            }
+            */
+
             var prog = new Driver();
-            prog.MayumiAsync().GetAwaiter().GetResult();
+            prog.MayumiAsync(token).GetAwaiter().GetResult();
         }
 
         //actual program
-        public async Task MayumiAsync()
+        public async Task MayumiAsync(string sToken)
         {
             //instatiates discord client
             discord = new DiscordClient(new DiscordConfiguration {
-                Token = "MzE2MDg0MTU1MTgyMjE5MjY1.DKxCqg.CqhUlPJrPnxFbzb9f9EO_-HdG-c",
+                Token = sToken,
                 TokenType = TokenType.Bot,
                 AutoReconnect = true,
                 UseInternalLogHandler = true,
