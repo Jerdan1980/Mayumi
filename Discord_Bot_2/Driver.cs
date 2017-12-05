@@ -21,14 +21,16 @@ namespace Discord_Bot
         static DiscordClient discord;
         static CommandsNextModule commands;
         static VoiceNextClient voice;
+        //other keys
         public static String OSU_key;
+        public static String steam_key;
 
         //to run the program
         [STAThread]
         public static void Main(string[] args)
         {
             //grabs the token file
-            string token = "", key = "";
+            string token = "", okey = "", devkey = "";
 
             while(true)
             {
@@ -37,7 +39,8 @@ namespace Discord_Bot
                 if(File.Exists(@fileName))
                 {
                     token = File.ReadAllLines(@fileName)[0];
-                    key = File.ReadAllLines(@fileName)[1];
+                    okey = File.ReadAllLines(@fileName)[1];
+                    devkey = File.ReadAllLines(@fileName)[2];
                     break;
                 } else
                     Console.Out.WriteLine("Enter valid file.");
@@ -58,11 +61,11 @@ namespace Discord_Bot
             */
 
             var prog = new Driver();
-            prog.MayumiAsync(token, key).GetAwaiter().GetResult();
+            prog.MayumiAsync(token, okey, devkey).GetAwaiter().GetResult();
         }
 
         //actual program
-        public async Task MayumiAsync(string sToken, string o_key)
+        public async Task MayumiAsync(string sToken, string o_key, string s_key)
         {
             //instatiates discord client
             discord = new DiscordClient(new DiscordConfiguration {
@@ -98,8 +101,10 @@ namespace Discord_Bot
             commands.RegisterCommands<Discord_Bot.definitions>();
             commands.RegisterCommands<Discord_Bot.DnD>();
             commands.RegisterCommands<Discord_Bot.voiceConnect>();
-            OSU_key = o_key;
+            OSU_key = o_key; //osu key
             commands.RegisterCommands<Discord_Bot.osu_connect>();
+            steam_key = s_key; //steam key
+            commands.RegisterCommands<Discord_Bot.steam_connect>();
 
 
 
