@@ -21,21 +21,23 @@ namespace Discord_Bot
         static DiscordClient discord;
         static CommandsNextModule commands;
         static VoiceNextClient voice;
+        public static String OSU_key;
 
         //to run the program
         [STAThread]
         public static void Main(string[] args)
         {
             //grabs the token file
-            string token = "";
+            string token = "", key = "";
 
             while(true)
             {
             Console.Out.Write(": ");
             string fileName = Console.In.ReadLine();
-                if(System.IO.File.Exists(@fileName))
+                if(File.Exists(@fileName))
                 {
-                    token = System.IO.File.ReadAllLines(@fileName)[0];
+                    token = File.ReadAllLines(@fileName)[0];
+                    key = File.ReadAllLines(@fileName)[1];
                     break;
                 } else
                     Console.Out.WriteLine("Enter valid file.");
@@ -56,11 +58,11 @@ namespace Discord_Bot
             */
 
             var prog = new Driver();
-            prog.MayumiAsync(token).GetAwaiter().GetResult();
+            prog.MayumiAsync(token, key).GetAwaiter().GetResult();
         }
 
         //actual program
-        public async Task MayumiAsync(string sToken)
+        public async Task MayumiAsync(string sToken, string o_key)
         {
             //instatiates discord client
             discord = new DiscordClient(new DiscordConfiguration {
@@ -96,6 +98,8 @@ namespace Discord_Bot
             commands.RegisterCommands<Discord_Bot.definitions>();
             commands.RegisterCommands<Discord_Bot.DnD>();
             commands.RegisterCommands<Discord_Bot.voiceConnect>();
+            OSU_key = o_key;
+            commands.RegisterCommands<Discord_Bot.osu_connect>();
 
 
 

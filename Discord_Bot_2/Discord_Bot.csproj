@@ -7,13 +7,13 @@
 
   <ItemGroup>
     <PackageReference Include="CSharpOSU" Version="1.4.5" />
-    <PackageReference Include="DSharpPlus" Version="3.2.2" />
-    <PackageReference Include="DSharpPlus.CommandsNext" Version="3.2.2" />
-    <PackageReference Include="DSharpPlus.VoiceNext" Version="3.2.2" />
-    <PackageReference Include="HtmlAgilityPack" Version="1.6.1" />
+    <PackageReference Include="DSharpPlus" Version="3.2.3" />
+    <PackageReference Include="DSharpPlus.CommandsNext" Version="3.2.3" />
+    <PackageReference Include="DSharpPlus.VoiceNext" Version="3.2.3" />
+    <PackageReference Include="HtmlAgilityPack" Version="1.6.6" />
     <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.3" />
-    <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
-    <PackageReference Include="SteamWebAPI2" Version="4.0.2" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.1-beta1" />
+    <PackageReference Include="SteamWebAPI2" Version="4.0.5" />
     <PackageReference Include="System.Net.Http" Version="4.3.3" />
   </ItemGroup>
 
