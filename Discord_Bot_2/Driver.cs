@@ -106,7 +106,8 @@ namespace Discord_Bot
             commands.RegisterCommands<Discord_Bot.steam_connect>();
 
             //triggers
-            discord.MessageCreated += trigger;
+            //discord.MessageCreated += trigger;
+            //disabled due to... problems
 
             //start program
             await discord.ConnectAsync();
@@ -152,8 +153,8 @@ namespace Discord_Bot
                 await e.Context.RespondAsync("Error. Please repeat the question.");
             }
         }
-
-        private async Task trigger(MessageCreateEventArgs e)
+        
+       /* private async Task trigger(MessageCreateEventArgs e)
         {
             if(e.Message.Content.Contains("hi"))
             {
@@ -161,6 +162,6 @@ namespace Discord_Bot
                 var interactability = discord.GetInteractivityModule();
                 //var msg = await interactability.WaitForMessageAsync(xm => xm.Author.Id == e.Author.Id && xm.Content.)
             }
-        }
+        }*/
     }
 }
