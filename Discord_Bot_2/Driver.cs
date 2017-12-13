@@ -11,6 +11,7 @@ using DSharpPlus.Entities;
 using DSharpPlus.EventArgs;
 using DSharpPlus.VoiceNext;
 using DSharpPlus.VoiceNext.Codec;
+using DSharpPlus.Interactivity;
 //using System.Windows.Forms;
 
 namespace Discord_Bot
@@ -76,10 +77,6 @@ namespace Discord_Bot
                 LogLevel = LogLevel.Debug
             });
 
-            //error checking
-            discord.Ready += Client_Ready;
-            discord.ClientErrored += Client_Error;
-
             //enables voice
             var voiceConfig = new VoiceNextConfiguration {
                 VoiceApplication = VoiceApplication.Music
@@ -88,11 +85,13 @@ namespace Discord_Bot
 
             //command string
             commands = discord.UseCommandsNext(new CommandsNextConfiguration {
-                StringPrefix = ".",
+                StringPrefix = ">",
                 EnableMentionPrefix = true
             });
 
             //errorchecking
+            discord.Ready += Client_Ready;
+            discord.ClientErrored += Client_Error;
             commands.CommandExecuted += Commands_Executed;
             commands.CommandErrored += Commands_Errored;
 
@@ -106,7 +105,8 @@ namespace Discord_Bot
             steam_key = s_key; //steam key
             commands.RegisterCommands<Discord_Bot.steam_connect>();
 
-
+            //triggers
+            discord.MessageCreated += trigger;
 
             //start program
             await discord.ConnectAsync();
@@ -153,5 +153,14 @@ namespace Discord_Bot
             }
         }
 
+        private async Task trigger(MessageCreateEventArgs e)
+        {
+            if(e.Message.Content.Contains("hi"))
+            {
+                await e.Message.RespondAsync("hi");
+                var interactability = discord.GetInteractivityModule();
+                //var msg = await interactability.WaitForMessageAsync(xm => xm.Author.Id == e.Author.Id && xm.Content.)
+            }
+        }
     }
 }

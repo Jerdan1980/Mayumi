@@ -6,6 +6,7 @@ using DSharpPlus;
 using DSharpPlus.CommandsNext;
 using DSharpPlus.CommandsNext.Attributes;
 using DSharpPlus.Entities;
+using DSharpPlus.Interactivity;
 using System.Net;
 using Discord_Bot.Resources.apiObjects;
 using System.IO;
@@ -23,12 +24,12 @@ namespace Discord_Bot
         public async Task Userfull(CommandContext ctx, string query)
         {
             OsuUser user = osu.GetUser(query)[0];
-            OsuUserBest best = osu.GetUserBest(query, 0, 50)[1];
-            OsuUserRecent recent = osu.GetUserRecent(query, 0, 50)[1];
+            OsuUserBest[] best = osu.GetUserBest(query);
+            OsuUserRecent[] recent = osu.GetUserRecent(query);
 
             String output = $"~ {user.username} (lvl {user.level}) ~\n" +
-                            $"Rank: {user.ranked_score} ({user.pp_country_rank} in {user.country})\n" +
-                            $"PP: {user.pp_rank} weighted, {user.pp_raw} unweighted\n" +
+                            $"Rank: {user.pp_rank} ({user.pp_country_rank} in {user.country})\n" +
+                            $"PP: {user.pp_raw}\n" +
                             $"Score: {user.ranked_score} weighted, {user.total_score} unweighted\n" +
                             $"Accuracy: {user.accuracy}\n" +
                             $"{user.playcount} plays ({user.count_rank_ss} SSs, {user.count_rank_s} Ss, {user.count_rank_a} As)";
@@ -45,13 +46,17 @@ namespace Discord_Bot
             //OsuUserRecent recent = osu.GetUserRecent(query)[0];
             //OsuBeatmap recent_song = osu.GetBeatmap((int) long.Parse(recent.beatmap_id))[0];
 
-            String output = $"~ {user.username} (lvl {user.level}) ~\n" +
-                            $"Rank: {user.ranked_score}\n" +
-                            $"PP: {user.pp_rank}\tAccuracy: {user.accuracy}\n" +
-                            $"Score: {user.ranked_score}\tPlays: {user.playcount}\n"; //+
-                            //$"Recently Played: "/*{recent_song.title} [{recent_song.version}] by {recent_song.artist} -*/ +$"{recent.accuracy}% {recent.rank}\n" +
-                            //$"Best Played: "/*{best_song.title} [{best_song.version}] by {best_song.artist} -*/ +$"{best.accuracy}% {best.rank}";
-            await ctx.RespondAsync(output);
+            DiscordEmbed embed = new DiscordEmbedBuilder {
+                Title = $"{user.username} (lvl {user.level})",
+                ThumbnailUrl = user.image,
+                Color = DiscordColor.HotPink,
+                Description =   $"Rank: {user.pp_rank} ({user.pp_country_rank} in {user.country})\n" +
+                                $"PP: {user.pp_raw}\tAccuracy: {user.accuracy}\n" +
+                                $"Score: {user.ranked_score}\tPlays: {user.playcount}\n" //+
+                                //$"Recently Played: "/*{recent_song.title} [{recent_song.version}] by {recent_song.artist} -*/ +$"{recent.accuracy}% {recent.rank}\n" +
+                                //$"Best Played: "/*{best_song.title} [{best_song.version}] by {best_song.artist} -*/ +$"{best.accuracy}% {best.rank}";
+            };            
+            await ctx.RespondAsync(embed: embed);
         }
     }
 }

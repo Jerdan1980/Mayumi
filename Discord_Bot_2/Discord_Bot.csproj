@@ -9,6 +9,7 @@
     <PackageReference Include="CSharpOSU" Version="1.4.5" />
     <PackageReference Include="DSharpPlus" Version="3.2.3" />
     <PackageReference Include="DSharpPlus.CommandsNext" Version="3.2.3" />
+    <PackageReference Include="DSharpPlus.Interactivity" Version="3.2.3" />
     <PackageReference Include="DSharpPlus.VoiceNext" Version="3.2.3" />
     <PackageReference Include="HtmlAgilityPack" Version="1.6.6" />
     <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.3" />

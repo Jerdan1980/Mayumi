@@ -24,7 +24,14 @@ namespace Discord_Bot
             var playerSummaryData = playerSummaryResponse.Data;
             var friendsListResponse = await steamInterface.GetFriendsListAsync(query);
             var friendsListData = friendsListResponse.Data;
-            await ctx.RespondAsync(playerSummaryData.Nickname);
+
+            var embed = new DiscordEmbedBuilder {
+                Title = playerSummaryData.Nickname,
+                ThumbnailUrl = playerSummaryData.AvatarUrl,
+                Color = DiscordColor.Blurple,
+                Description = "Number of friends: " + friendsListData.Count
+            };
+            await ctx.RespondAsync(embed: embed);
         }
     }
 }
