@@ -47,20 +47,6 @@ namespace Discord_Bot
                     Console.Out.WriteLine("Enter valid file.");
             }
 
-            /*
-            OpenFileDialog fileDialog = new OpenFileDialog();
-            fileDialog.InitialDirectory = "c:\\";
-            fileDialog.Filter = "txt files (*.txt)|*.txt|custom file (*.dis)|*.dis";
-            fileDialog.FilterIndex = 2;
-            fileDialog.Multiselect = false;
-            fileDialog.Title = "Pick token file.";
-
-            if(fileDialog.ShowDialog() == DialogResult.OK)
-            {
-                token = System.IO.File.ReadAllLines(fileDialog.FileName)[0];
-            }
-            */
-
             var prog = new Driver();
             prog.MayumiAsync(token, okey, devkey).GetAwaiter().GetResult();
         }
@@ -78,10 +64,11 @@ namespace Discord_Bot
             });
 
             //enables voice
-            var voiceConfig = new VoiceNextConfiguration {
+            //disabled until voice works on linux.
+            /*var voiceConfig = new VoiceNextConfiguration {
                 VoiceApplication = VoiceApplication.Music
             };
-            voice = discord.UseVoiceNext(voiceConfig);
+            voice = discord.UseVoiceNext(voiceConfig);*/
 
             //command string
             commands = discord.UseCommandsNext(new CommandsNextConfiguration {
@@ -99,7 +86,7 @@ namespace Discord_Bot
             commands.RegisterCommands<Discord_Bot.text>();
             commands.RegisterCommands<Discord_Bot.definitions>();
             commands.RegisterCommands<Discord_Bot.DnD>();
-            commands.RegisterCommands<Discord_Bot.voiceConnect>();
+            //commands.RegisterCommands<Discord_Bot.voiceConnect>();
             OSU_key = o_key; //osu key
             commands.RegisterCommands<Discord_Bot.osu_connect>();
             steam_key = s_key; //steam key
