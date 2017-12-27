@@ -11,6 +11,8 @@ using DSharpPlus.Entities;
 using DSharpPlus.EventArgs;
 using DSharpPlus.VoiceNext;
 using DSharpPlus.VoiceNext.Codec;
+using DSharpPlus.Interactivity;
+//using System.Windows.Forms;
 
 namespace Discord_Bot
 {
@@ -20,53 +22,79 @@ namespace Discord_Bot
         static DiscordClient discord;
         static CommandsNextModule commands;
         static VoiceNextClient voice;
+        //other keys
+        public static String OSU_key;
+        public static String steam_key;
 
         //to run the program
+        [STAThread]
         public static void Main(string[] args)
         {
+            //grabs the token file
+            string token = "", okey = "", devkey = "";
+
+            while(true)
+            {
+            Console.Out.Write(": ");
+            string fileName = Console.In.ReadLine();
+                if(File.Exists(@fileName))
+                {
+                    token = File.ReadAllLines(@fileName)[0];
+                    okey = File.ReadAllLines(@fileName)[1];
+                    devkey = File.ReadAllLines(@fileName)[2];
+                    break;
+                } else
+                    Console.Out.WriteLine("Enter valid file.");
+            }
+
             var prog = new Driver();
-            prog.MayumiAsync().GetAwaiter().GetResult();
+            prog.MayumiAsync(token, okey, devkey).GetAwaiter().GetResult();
         }
 
         //actual program
-        public async Task MayumiAsync()
+        public async Task MayumiAsync(string sToken, string o_key, string s_key)
         {
             //instatiates discord client
             discord = new DiscordClient(new DiscordConfiguration {
-                Token = "MzE2MDg0MTU1MTgyMjE5MjY1.DKxCqg.CqhUlPJrPnxFbzb9f9EO_-HdG-c",
+                Token = sToken,
                 TokenType = TokenType.Bot,
                 AutoReconnect = true,
                 UseInternalLogHandler = true,
                 LogLevel = LogLevel.Debug
             });
 
-            //error checking
-            discord.Ready += Client_Ready;
-            discord.ClientErrored += Client_Error;
-
             //enables voice
-            var voiceConfig = new VoiceNextConfiguration {
+            //disabled until voice works on linux.
+            /*var voiceConfig = new VoiceNextConfiguration {
                 VoiceApplication = VoiceApplication.Music
             };
-            voice = discord.UseVoiceNext(voiceConfig);
+            voice = discord.UseVoiceNext(voiceConfig);*/
 
             //command string
             commands = discord.UseCommandsNext(new CommandsNextConfiguration {
-                StringPrefix = ".",
+                StringPrefix = ">",
                 EnableMentionPrefix = true
             });
 
             //errorchecking
+            discord.Ready += Client_Ready;
+            discord.ClientErrored += Client_Error;
             commands.CommandExecuted += Commands_Executed;
             commands.CommandErrored += Commands_Errored;
 
             //command service
-            commands.RegisterCommands<Discord_Bot_2.text>();
-            commands.RegisterCommands<Discord_Bot_2.definitions>();
-            commands.RegisterCommands<Discord_Bot_2.DnD>();
-            commands.RegisterCommands<Discord_Bot_2.voiceConnect>();
+            commands.RegisterCommands<Discord_Bot.text>();
+            commands.RegisterCommands<Discord_Bot.definitions>();
+            commands.RegisterCommands<Discord_Bot.DnD>();
+            //commands.RegisterCommands<Discord_Bot.voiceConnect>();
+            OSU_key = o_key; //osu key
+            commands.RegisterCommands<Discord_Bot.osu_connect>();
+            steam_key = s_key; //steam key
+            commands.RegisterCommands<Discord_Bot.steam_connect>();
 
-
+            //triggers
+            //discord.MessageCreated += trigger;
+            //disabled due to... problems
 
             //start program
             await discord.ConnectAsync();
@@ -112,6 +140,15 @@ namespace Discord_Bot
                 await e.Context.RespondAsync("Error. Please repeat the question.");
             }
         }
-
+        
+       /* private async Task trigger(MessageCreateEventArgs e)
+        {
+            if(e.Message.Content.Contains("hi"))
+            {
+                await e.Message.RespondAsync("hi");
+                var interactability = discord.GetInteractivityModule();
+                //var msg = await interactability.WaitForMessageAsync(xm => xm.Author.Id == e.Author.Id && xm.Content.)
+            }
+        }*/
     }
 }

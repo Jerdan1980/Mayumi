@@ -1,11 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.16
+VisualStudioVersion = 15.0.27004.2006
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Discord_Bot_2", "Discord_Bot_2\Discord_Bot_2.csproj", "{7AF91018-4492-4E57-8902-3A38C546B489}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mayumi_Resources", "Mayumi_Resources\Mayumi_Resources.csproj", "{7FDE1DB7-338F-4232-992A-3C5228835B14}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Discord_Bot", "Discord_Bot_2\Discord_Bot.csproj", "{7AF91018-4492-4E57-8902-3A38C546B489}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +15,6 @@ Global
 		{7AF91018-4492-4E57-8902-3A38C546B489}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7AF91018-4492-4E57-8902-3A38C546B489}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7AF91018-4492-4E57-8902-3A38C546B489}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7FDE1DB7-338F-4232-992A-3C5228835B14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7FDE1DB7-338F-4232-992A-3C5228835B14}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7FDE1DB7-338F-4232-992A-3C5228835B14}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7FDE1DB7-338F-4232-992A-3C5228835B14}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
