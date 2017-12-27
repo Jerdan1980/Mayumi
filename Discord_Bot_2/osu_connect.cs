@@ -8,7 +8,6 @@ using DSharpPlus.CommandsNext.Attributes;
 using DSharpPlus.Entities;
 using DSharpPlus.Interactivity;
 using System.Net;
-using Discord_Bot.Resources.apiObjects;
 using System.IO;
 using CSharpOsu;
 using CSharpOsu.Module;

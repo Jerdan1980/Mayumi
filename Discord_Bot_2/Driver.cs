@@ -91,10 +91,10 @@ namespace Discord_Bot
             commands.RegisterCommands<Discord_Bot.osu_connect>();
             steam_key = s_key; //steam key
             commands.RegisterCommands<Discord_Bot.steam_connect>();
+            commands.RegisterCommands<Discord_Bot.CBL_connect>();
 
             //triggers
-            //discord.MessageCreated += trigger;
-            //disabled due to... problems
+            discord.MessageCreated += Eight_Ball;
 
             //start program
             await discord.ConnectAsync();
@@ -141,14 +141,15 @@ namespace Discord_Bot
             }
         }
         
-       /* private async Task trigger(MessageCreateEventArgs e)
-        {
-            if(e.Message.Content.Contains("hi"))
+       private async Task Eight_Ball(MessageCreateEventArgs e)
+       {
+            if(e.Message.Content.Contains("8ball"))
             {
-                await e.Message.RespondAsync("hi");
-                var interactability = discord.GetInteractivityModule();
-                //var msg = await interactability.WaitForMessageAsync(xm => xm.Author.Id == e.Author.Id && xm.Content.)
+                Random rng = new Random();
+                string[] data = File.ReadAllLines(@"MayumiYesNo.txt");
+                var choice = rng.Next(data.Length);
+                await e.Message.RespondAsync(data[choice]);
             }
-        }*/
+        }
     }
 }
