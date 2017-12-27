@@ -108,7 +108,8 @@ namespace Discord_Bot_2
         
         }
 
-        [Command("8ball"), Description("answers yes or no"), Aliases("yn", "y/n")]
+        static Boolean ball8 = null;
+        [Command(ball8.Contains("8Ball?")), Description("answers yes or no"), Aliases(ball8.Contains("Will"), (ball8.Contains("Do") && ball8.Contains("?")))]
         public async Task YesNo(CommandContext ctx)
         {
             Random rng = new Random();
