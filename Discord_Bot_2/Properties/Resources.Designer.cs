@@ -8,9 +8,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Discord_Bot_2.Properties {
+namespace Discord_Bot.Properties {
     using System;
-    using System.Reflection;
     
     
     /// <summary>
@@ -40,7 +39,7 @@ namespace Discord_Bot_2.Properties {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Discord_Bot_2.Properties.Resources", typeof(Resources).GetTypeInfo().Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Discord_Bot.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -58,90 +57,6 @@ namespace Discord_Bot_2.Properties {
             }
             set {
                 resourceCulture = value;
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Goodbye
-        ///Auf Wiedersehen
-        ///Peace
-        ///peace out
-        ///see ya
-        ///cya
-        ///Catch ya later
-        ///Aight man I&apos;m out
-        ///So long, farewell
-        ///I&apos;ll be back.
-        ///Smell you later!
-        ///Hasta la vista, baby.
-        ///Sayonara
-        ///Adieu, adieu, parting is such sweet sorrow..
-        /// </summary>
-        public static string goodbye {
-            get {
-                return ResourceManager.GetString("goodbye", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Goodnight
-        ///G&apos;night
-        ///night.
-        /// </summary>
-        public static string goodnight {
-            get {
-                return ResourceManager.GetString("goodnight", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Hello
-        ///Hullo
-        ///Greetings
-        ///Hallo
-        ///Wazzup
-        ///What&apos;s up
-        ///Yo
-        ///Aiyo
-        ///How ya doing?
-        ///What&apos;s good?
-        ///sup
-        ///Hey
-        ///&apos;ello
-        ///Oh. Its you.
-        ///Hei. Kuinka voit?
-        ///Hola
-        ///Its n_ice_ to meet you!
-        ///Hello. Its me.
-        ///&apos;ello guv&apos;nor
-        ///Greetings Human.
-        ///Salutations!.
-        /// </summary>
-        public static string hello {
-            get {
-                return ResourceManager.GetString("hello", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to kek
-        ///lol
-        ///LOL
-        ///haha.
-        /// </summary>
-        public static string laugh {
-            get {
-                return ResourceManager.GetString("laugh", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to rip in pepperonis
-        ///RIP in pieces.
-        /// </summary>
-        public static string rip {
-            get {
-                return ResourceManager.GetString("rip", resourceCulture);
             }
         }
     }

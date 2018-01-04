@@ -17,7 +17,7 @@ namespace Discord_Bot
         public async Task Hi(CommandContext ctx)
         {
             Random rng = new Random();
-            string[] data = File.ReadAllLines(@"..\\resources\\textSpeech\\hello.txt");
+            string[] data = File.ReadAllLines(@"..\\Discord_Bot_2\\Resources\\textSpeech\\hello.txt");
             var choice = rng.Next(data.Length + 1);
             if(choice == data.Length + 1)
             {
@@ -31,7 +31,7 @@ namespace Discord_Bot
         public async Task Goodbye(CommandContext ctx)
         {
             Random rng = new Random();
-            string[] data = File.ReadAllLines(@"..\\resources\\textSpeech\\goodbye.txt");
+            string[] data = File.ReadAllLines(@"..\\Discord_Bot_2\\Resources\\textSpeech\\goodbye.txt");
             var choice = rng.Next(data.Length + 1);
             if(choice == data.Length + 1)
             {
@@ -45,7 +45,7 @@ namespace Discord_Bot
         public async Task Goodnight(CommandContext ctx)
         {
             Random rng = new Random();
-            string[] data = File.ReadAllLines(@"..\\resources\\textSpeech\\goodnight.txt");
+            string[] data = File.ReadAllLines(@"..\\Discord_Bot_2\\Resources\\textSpeech\\goodnight.txt");
             var choice = rng.Next(data.Length + 1);
             if(choice == data.Length + 1)
             {
@@ -59,7 +59,7 @@ namespace Discord_Bot
         public async Task Laugh(CommandContext ctx)
         {
             Random rng = new Random();
-            string[] data = File.ReadAllLines(@"..\\resources\\textSpeech\\laugh.txt");
+            string[] data = File.ReadAllLines(@"..\\Discord_Bot_2\\Resources\\textSpeech\\laugh.txt");
             var choice = rng.Next(data.Length + 2);
             if(choice == data.Length + 1)
             {
@@ -77,7 +77,7 @@ namespace Discord_Bot
         public async Task RIP(CommandContext ctx)
         {
             Random rng = new Random();
-            string[] data = File.ReadAllLines(@"..\\resources\\textSpeech\\rip.txt");
+            string[] data = File.ReadAllLines(@"..\\Discord_Bot_2\\Resources\\textSpeech\\rip.txt");
             var choice = rng.Next(data.Length + 2);
             if(choice == data.Length + 1)
             {
@@ -90,7 +90,7 @@ namespace Discord_Bot
             } else
                 await ctx.RespondAsync(data[choice]);
         }
-        [Command("echo"), Description("repeats"), Aliases("say")]
+        [Command("say"), Description("repeats"), Aliases("echo", "repeat")]
         public async Task Echo(CommandContext ctx, string output) => await ctx.RespondAsync(output);
 
         [Command("time"), Description("tells time")]
@@ -99,22 +99,26 @@ namespace Discord_Bot
         [Command("fortune"), Description("gives a fortune cookie")]
         public async Task Fortune(CommandContext ctx)
         {
-            String res = @"..\\resources\\textSpeech\\Fortune_Coookies.txt";
-            //Cookie[File.ReadAllLines(res).Length] fortunes; 
-            for(int i = 1; i < File.ReadAllLines(res).Length; i++)
-            {
-                await ctx.RespondAsync("WIP");
-            }
-        
-        }
-        
-        [Command("8ball")]
-        public async Task YesNo(CommandContext ctx)
-        {
+            Cookie[] cookies = Cookie.fileToArray();
             Random rng = new Random();
-            string[] data = File.ReadAllLines(@"MayumiYesNo.txt");
-            var choice = rng.Next(data.Length);
-            await ctx.RespondAsync(data[choice]);
+            int pick = rng.Next(cookies.Length);
+            Cookie fortune = cookies[pick];
+
+            string output = $"_{fortune.Fortune}_\n" +
+                            $"Your lucky numbers: {fortune.Numbers}";
+            if(fortune.Learn == true)
+            {
+                output += "\n";
+                output += $"**Learn Chinese:** _{fortune.English}_ is {fortune.Chinese}";
+            }
+
+            DiscordEmbed embed = new DiscordEmbedBuilder {
+                Title = $"{ctx.Member.Nickname}'s fortune",
+                Color = DiscordColor.Wheat,
+                Description = output
+            };
+
+            await ctx.RespondAsync(embed: embed);
         }
     }
 }

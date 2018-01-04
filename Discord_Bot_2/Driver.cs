@@ -60,7 +60,7 @@ namespace Discord_Bot
                 TokenType = TokenType.Bot,
                 AutoReconnect = true,
                 UseInternalLogHandler = true,
-                LogLevel = LogLevel.Debug
+                LogLevel = LogLevel.Info
             });
 
             //enables voice

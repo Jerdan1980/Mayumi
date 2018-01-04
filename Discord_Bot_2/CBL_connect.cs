@@ -19,28 +19,21 @@ namespace Discord_Bot
 {
     class CBL_connect
     {
-        [Command("urbandict"), Description("fetches a definition from ubrandictionary")]
-        public async Task Urbandict(CommandContext ctx, [RemainingText] String query)
-        {
-            UrbanDictionaryService uDict = new UrbanDictionaryService();
-            IEnumerable<UrbanDictionaryResult> temp = await uDict.GetDefinitionsAsync(query);
-            UrbanDictionaryResult answer = temp.GetEnumerator().Current;
-
-            DiscordEmbed embed = new DiscordEmbedBuilder {
-                Title = $" ~ {answer.Word} ~ ",
-                Color = DiscordColor.Grayple,
-                Description =   answer.Definition +
-                                "/nEx: " + answer.Example +
-                                "/nBy: " + answer.Author
-            };
-            await ctx.RespondAsync(embed: embed);
-        }
-
         [Command("maths"), Description("does maths")]
         public async Task Maths(CommandContext ctx, [RemainingText] String query)
         {
-            NCalcService nCalc = new NCalcService();
-            String answer = await nCalc.EvaluateAsync(query);
+            ICalculatorService calc = new NCalcService();
+            var result = await calc.EvaluateAsync(query);
+            await ctx.RespondAsync(result);
+        }
+
+        [Command("cirno"), Description("does cirno maths")]
+        public async Task Cirno(CommandContext ctx, [RemainingText] String query)
+        {
+            ICalculatorService calc = new NCalcService();
+            string result = await calc.EvaluateAsync(query);
+            int final = int.Parse(result);
+            await ctx.RespondAsync(final + "");
         }
     }
 }

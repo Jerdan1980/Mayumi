@@ -11,7 +11,7 @@ namespace Discord_Bot
 {
     class DnD
     {
-        [Command("roll"), Description("rolls dice")]
+        [Command("roll"), Description("rolls dice"), Aliases("r")]
         public async Task Roll(CommandContext ctx, string query)
         {
             Random rng = new Random();
