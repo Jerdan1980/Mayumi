@@ -27,3 +27,14 @@ Discontent is the first necessity of progress.|36 48 6 39 43 13|true|To eat|吃(
 Cooperation will work better.|35 22 48 34 42 46|true|Tennis|網(Wǎng)球(qiú)
 Of all the things you wear, your expression is the most important.|49 15 55 32 5 21|true|July|七(Qī)月(yuè)
 Failure is the tuition you pay for success.|48 3 28 43 24 16|true|To quench one's thirst|解(Jiě)渴(kě)
+Success is a planned event.|54 16 45 51 7 11|false|null|null
+The kind of advice we do not like to take often turns out to be the best.|40 24 33 19 29 51|false|null|null
+Happiness always accompanies you.|25 65 22 86 60 63|false|null|null
+A thrilling time is in your immediate future.|5 3 27 41 94 11|false|null|null
+A smile increases your face value.|44 37 46 56 39 13|false|null|null
+Balance life with a little sweet and sour.|6 3 48 34 12 20|false|null|null
+A secret is no longer a secret by the time it gets to you.|12 19 38 39 10 25|false|null|null
+The social scene can be fun today.|4 56 12 45 50 54|false|null|null
+If you are still hungry, have another fortune cookie.|27 29 28 46 17 9|false|null|null
+You will enjoy good health and be surrounded by luxury.|37 60 7 70 9 16|false|null|null
+A thrilling time is in your immediate future.|5 3 27 41 94 11|false|null|null

@@ -120,5 +120,14 @@ namespace Discord_Bot
 
             await ctx.RespondAsync(embed: embed);
         }
+
+        [Command("pun"), Description("A pun for you!")]
+        public async Task Pun(CommandContext ctx, [Description("The topic of the pun")] string keyword)
+        {
+            Random rng = new Random();
+            string[] puns = custClass.getPuns(keyword);
+            int choice = rng.Next(puns.Length);
+            await ctx.RespondAsync(puns[choice]);
+        }
     }
 }

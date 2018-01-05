@@ -12,30 +12,69 @@ namespace Discord_Bot
     class DnD
     {
         [Command("roll"), Description("rolls dice"), Aliases("r")]
-        public async Task Roll(CommandContext ctx, string query)
+        public async Task Roll(CommandContext ctx, [Description("")] string query)
         {
+            await ctx.TriggerTypingAsync();
+
+            //initialize variables
             Random rng = new Random();
-            string[] tokens = query.Split('d',' ','+','-');
+            int roll = 0;
+            string calc = "```"; //starts monotext
+            int pick = 0; //temp variable for storing the roll
+            int rolls = 0;
+
+            //removes spaces beforehand to prevent them from interfereing
+            string[] tempstore = query.Split(' ');
+            query = "";
+            foreach(string v in tempstore)
+                query += v;
+
+            //splits the query into the variables
+            string[] tokens = query.Split('d','+','-');
             int number = int.Parse(tokens[0]);
             int sides = int.Parse(tokens[1]);
-            int roll = 0;
+
+            //does the calculations
             for(int i = 0; i < number; i++)
             {
-                roll += rng.Next(1, sides + 1);
+                pick = rng.Next(1, sides + 1);
+                rolls++;
+                roll += pick;
+                if(rolls == 1)
+                    calc += pick;
+                else
+                    calc += $" + {pick}";
             }
+            //checks to see if there are modifiers
             if(query.Contains("-"))
-                roll -= int.Parse(tokens[2]);
-            else
-                roll += int.Parse(tokens[2]);
-            await ctx.RespondAsync($"{ctx.Member.Username} rolls a {roll}");
+            {
+                pick = int.Parse(tokens[2]);
+                roll -= pick;
+                calc += " - pick";
+            }
+            else if(query.Contains("+"))
+            {
+                pick = int.Parse(tokens[2]);
+                roll += pick;
+                calc += " + pick";
+            }
+            calc += "```"; //ends the monotext
+
+            //output
+            await ctx.RespondAsync($"{ctx.Member.Username} rolls a {roll}\n{calc}");
         }
 
         [Command("flip"), Description("flips a coin")]
-        public async Task Flip(CommandContext ctx, int mult = 1)
+        public async Task Flip(CommandContext ctx, [Description("The number of coins to flip")] int mult = 1)
         {
+            await ctx.TriggerTypingAsync();
+
+            //initialize variables
             Random rng = new Random();
             int heads = 0, tails = 0;
             String output = "";
+
+            //do the calculations
             for(int i = 0; i < mult; i++)
             {
                 int coin = rng.Next(2);
@@ -49,21 +88,30 @@ namespace Discord_Bot
                     output += "T";
                 }
             }
+
+            //output
             await ctx.RespondAsync( "```" + output + "```\n" + 
                                     "Heads: " + heads + "\n" +
                                     "Tails: " + tails);
         }
 
         [Command("randInt"), Description("grabs a random integer")]
-        public async Task RandInt(CommandContext ctx, int lower = int.MinValue, int higher = int.MaxValue, int rep = 1)
+        public async Task RandInt(CommandContext ctx, [Description("The lowest value, inclusive")] int lower = int.MinValue, [Description("The highest value, exclusive")] int higher = int.MaxValue, [Description("The number of repitetions")] int rep = 1)
         {
+            await ctx.TriggerTypingAsync();
+            
+            //initialize variables
             Random rng = new Random();
             String output = "";
-            for(int i = 0; i < rep - 1; i++)
+
+            //do the calculations
+            for(int i = 0; i < rep - 1; i++) //does one less to prevent that extra comma
             {
                 output += rng.Next(lower, higher) + ", ";
             }
             output += rng.Next(lower, higher);
+
+            //output
             await ctx.RespondAsync(output);
         }
     }
