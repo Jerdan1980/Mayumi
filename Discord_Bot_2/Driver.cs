@@ -143,7 +143,7 @@ namespace Discord_Bot
         
        private async Task Eight_Ball(MessageCreateEventArgs e)
        {
-            if(e.Message.Content.Contains("8ball") || (e.Message.Content.contains("should") && e.Message.Content.Contains("?"))
+            if(e.Message.Content.Contains("8ball") || (e.Message.Content.Contains("should") && e.Message.Content.Contains("?")))
             {
                 Random rng = new Random();
                 string[] data = File.ReadAllLines(@"MayumiYesNo.txt");

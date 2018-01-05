@@ -17,7 +17,7 @@ using CommonBotLibrary.Services.Models;
 
 namespace Discord_Bot
 {
-    [Group("define"), Description("Any sort of defining"), Aliases("def"), CanInvokeWithoutSubcommand = true]
+    [Group("define", CanInvokeWithoutSubcommand = true), Description("Any sort of defining"), Aliases("def")]
     class definitions
     {
         //the default command
