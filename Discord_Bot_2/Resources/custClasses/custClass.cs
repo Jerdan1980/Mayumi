@@ -72,7 +72,7 @@ namespace Discord_Bot
             string[] keys = rawKey.ToArray();
 
             //checks for the keyword and, if present, adds it to the output
-            for(int i = 0; i < rawPun.Length; i++)
+            for(int i = 0; i < puns.Length; i++)
             {
                 if(keys[i].Contains(keyword))
                     outs.Add(puns[i]);
