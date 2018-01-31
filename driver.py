@@ -12,4 +12,4 @@ async def on_message(message):
   if message.content.startswith('ping'):
     await client.sendmessage(message.channel, 'pong!')
 
-client.run(token)
+client.run(token) #insert way to find token here.
