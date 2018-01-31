@@ -9,7 +9,8 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
-  if message.content.startswith('ping'):
-    await client.sendmessage(message.channel, 'pong!')
+  if "mayumi" in message.content.toLower():
+    if "ping" in message.content:
+      await client.sendmessage(message.channel, 'pong!')
 
 client.run(token) #insert way to find token here.
