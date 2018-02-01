@@ -12,26 +12,27 @@ Click on this link: [ADD TO DISCORD](https://discordapp.com/api/oauth2/authorize
 * **Mayumi is offline! What do I do?** _This is normal, please do not worry._
 * **I want to contribute!** _Thank you! We have no way to contact though..._
 ## Current To-Do List
-**What are Mayumi's goals?**
-- [ ] Style
-  - [ ] Profile Picture
-  - [x] Hello/Goodbye
-- [ ] User Interaction
-  - [ ] Writing Prompts
-  - [ ] Jokes
-- [ ] APIs
-  - [ ] OSU! API
-  - [ ] Steam API
-  - [ ] Battle.net API
-  - [ ] Urban Dictionary
-  - [ ] Regular Dictionary
-  - [ ] Name Etymology
-- [ ] Discord Implementation
-  - [ ] Text in servers
-  - [ ] DMs
-  - [ ] Voice
-  - [ ] Embeds
-**Future Plans**
+### Style
+- [ ] Profile Picture
+- [x] Hello/Goodbye
+### User Interaction
+- [ ] Writing Prompts
+- [ ] Jokes
+  - [ ] Puns
+- [ ] 8ball
+### APIs
+- [ ] OSU! API
+- [ ] Steam API
+- [ ] Battle.net API
+- [ ] Urban Dictionary
+- [ ] Regular Dictionary
+- [ ] Name Etymology
+### Discord Implementation
+- [ ] Text in servers
+- [ ] DMs
+- [ ] Voice
+- [ ] Embeds
+## Future Plans
 * Twitch Implemenation?
 * Talking?
 * Wiki/Help Page
