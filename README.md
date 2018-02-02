@@ -1,7 +1,7 @@
 # Mayumi-v2
 ## About
 ### What is Mayumi?
-Mayumi is a general multipurpose Discord bot. Its currently under development by @Jerdan1980, @AnipWrites, and @Spikeshroom during their free time.
+Mayumi is a general multipurpose Discord bot. Its currently under development by @Jerdan1980, @Anipwrites, and @Spikeshroom during their free time.
 ### Why v2?
 Mayumi v2 is the second major iteration of Mayumi, with [Mayumi v1](https://www.github.com/Jerdan1980/Mayumi) being made in C# with [dsharplus](https://github.com/NaamloosDT/DSharpPlus). Mayumi v2 is mainly made in python using [discord.py](https://github.com/Rapptz/discord.py). The reason for this was to allow Mayumi to be online 24/7 and is planned to be able to access more things and have a more intuitive way of interacting.
 ### How do I add Mayumi v2 to my server?
