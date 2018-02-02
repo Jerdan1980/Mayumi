@@ -8,7 +8,7 @@ import discord
 
 
 #import token file
-with open("tokens.json") as file:
+with open('tokens.json') as file:
   tokens = json.load(file)
 file.closed
 
@@ -21,10 +21,10 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
-  if "mayumi" in message.content.toLower():
-    if "ping" in message.content:
-      await client.sendmessage(message.channel, 'pong!')
-    elif "time" in message.content:
-      await client.sendmessage(message.channel, message.timestamp)
+  if "mayumi" in message.content.lower():
+    if "ping" in message.content.lower():
+      await client.send_message(message.channel, 'pong!')
+    elif "time" in message.content.lower():
+      await client.send_message(message.channel, message.timestamp)
 
-client.run(tokens["discord"]) #insert way to find token here.
+client.run(tokens['discord']) #insert way to find token here.
