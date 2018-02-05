@@ -26,5 +26,17 @@ async def on_message(message):
       await client.send_message(message.channel, 'pong!')
     elif "time" in message.content.lower():
       await client.send_message(message.channel, message.timestamp)
-
+      
+      
+      
+@client.event
+async def on_message(message):    
+  if "mayumi" in message.content.lower():
+    elif "writing prompts" in message.content.lower():
+      if"random" in message:
+        await client.send_message(message.channel, file.open("Writing Prompts.txt").readlines()[random.rand(148)+1].split("|")[0])
+      elif "humor" in message:
+        await client.send_message(message.channel, file.open("Writing Prompts.txt").readlines()[humor.rand(148)+1].split("|")[0])
+      elif "fantasy" in message
+        await client.send_message(message.channel, file.open("Writing Prompts.txt").readlines()[humor.rand(148)+1].split("|")[0])
 client.run(tokens['discord']) #insert way to find token here.
