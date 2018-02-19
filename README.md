@@ -10,7 +10,7 @@ Click on this link: [ADD TO DISCORD](https://discordapp.com/api/oauth2/authorize
 * **I found a bug!** _If there are problems, submit an issue to this repo._
 * **I want something implemented!** _Submit an issue to this repo and we'll talk._
 * **Mayumi is offline! What do I do?** _This is normal, please do not worry._
-* **I want to contribute!** _Thank you! Feel free to contact Superloach#0463 or submit fixed code as an issue._
+* **I want to contribute!** _Thank you! Feel free to contact Superloach#0463 or submit new/fixed code as an issue._
 ## Current To-Do List
 ### Style
 - [ ] Profile Picture
