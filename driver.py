@@ -38,7 +38,7 @@ async def on_message(message):
         await client.send_message(message.channel, 'tails')
       else:
         await client.send_message(message.channel, 'something\'s wrong here')
-    elif("8ball" in msg):
+    elif ("should" in msg and "?" in msg) or ("8ball" in msg):
       #trover helped me with the next line!
       o = (lambda x:{None:x[0]}[random.shuffle(x)])(open("Resources\MayumiYesNo.txt", "r").read().split("\n"))
       await client.send_message(message.channel, o)
