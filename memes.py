@@ -1,7 +1,7 @@
 
 #Meme responder. With the use of a command, Mayumi will provide a random meme (no pictures unless someone else knows how to do that)
 elif "Meme" in mesg():
-  num = random.randint(0, 20)
+  num = random.randint(0, 100)
   if(num==0):
     print("Yeet!")
   if(num==1):
@@ -121,17 +121,29 @@ elif "Meme" in mesg():
   if(num==58)
     print("Then *perish!*")
   if(num==59)
-    print("Separating Florida from the rest of te united states")
+    print("Separating Florida from the rest of the united states")
   if(num==60)
     print("Nerf this!")
   if(num==61)
     print("Error 404: Meme not found")
-  if(num==61)
+  if(num==62)
     print("WIP")
-          
-          
-          
-          
-          
-          
+  if(num=63)  
+    print("repeating spelling mistakes your friends use in chat over and over again.")
+  if(num=64)        
+    print("loss.jpeg")      
+  if(num=65)        
+    print("water isb't wet")
+  if(num=66)
+    print("Why are you running?!")
+  if(num=67)
+    print("Where's that DAMN fourth chaos emerald!")      
+  if(num=68)
+    print("BIG THE CAT!!!!")
+  if(num=69)
+    print("Shrek is love, Shrek is life.)
+  if(num=70)
+    print("Nightcore remixes to songs.")
+  if(num=71)
+    print("Your entire existence")      
           
