@@ -4,9 +4,16 @@ import json
 import asyncio
 import discord
 from discord.ext import commands
+import discord.utils
 #standard imports
 import random
 import re
+
+#check owner
+def is_owner_check(message):
+    return message.author.id == '262425476822204421'
+def is_owner():
+    return commands.check(lambda ctx: is_owner_check(ctx.message))
 
 #load tokens
 filePath = input("token json filepath: ")
@@ -20,9 +27,11 @@ bot = commands.Bot(command_prefix=tokens['prefix'])
 @bot.event
 async def on_ready():
     print("Loaded!")
+    await bot.change_presence(game=discord.Game(name=tokens["prefix"] + "help"))
 
 #end this man's whole career
-@bot.command()
+@bot.command(hidden=True)
+@is_owner()
 async def stop():
     await bot.logout()
 
