@@ -5,6 +5,7 @@ import asyncio
 import discord
 from discord.ext import commands
 import discord.utils
+import logging
 #standard imports
 import random
 import re
@@ -27,6 +28,7 @@ bot = commands.Bot(command_prefix=tokens['prefix'])
 @bot.event
 async def on_ready():
     print("Loaded!")
+    logging.basicConfig(level=logging.INFO)
     await bot.change_presence(game=discord.Game(name=tokens["prefix"] + "help"))
 
 #end this man's whole career
@@ -76,6 +78,11 @@ async def roll(dice : str):
     result += "`\n" + "Result: " + str(total)
 
     await bot.say(result)
+
+#send pfp
+@bot.command()
+async def pfp(message):
+    await message.channel.send(content='Here\'s my pfp!', file=discord.File(filename='Mayumi pfp.png'))
 
 #bot token
 bot.run(tokens['discord'])
