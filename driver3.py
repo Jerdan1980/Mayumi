@@ -12,7 +12,7 @@ import re
 
 #check owner
 def is_owner_check(message):
-    return message.author.id == '262425476822204421'
+    return message.author.id == tokens['author ID']
 def is_owner():
     return commands.check(lambda ctx: is_owner_check(ctx.message))
 
@@ -29,22 +29,22 @@ bot = commands.Bot(command_prefix=tokens['prefix'])
 async def on_ready():
     print("Loaded!")
     logging.basicConfig(level=logging.INFO)
-    await bot.change_presence(game=discord.Game(name=tokens["prefix"] + "help"))
+    await bot.change_presence(activity=discord.Game(name=tokens["prefix"] + "help"))
 
 #end this man's whole career
 @bot.command(hidden=True)
 @is_owner()
-async def stop():
+async def stop(message):
     await bot.logout()
 
 #ping command
 @bot.command()
-async def ping():
-    await bot.say("pong!")
+async def ping(message):
+    await message.channel.send("pong!")
 
 #roll command
 @bot.command()
-async def roll(dice : str):
+async def roll(ctx, dice : str):
     #extracts rolling information
     try:
         if '+' in dice or '-' in dice:
@@ -55,7 +55,7 @@ async def roll(dice : str):
             rolls, limit = map(int, dice.split('d'))
             modifier = 0
     except:
-        await bot.say('Format has to be in `NdN` or `NdN+N`!')
+        await ctx.send('Format has to be in `NdN` or `NdN+N`!')
         return
 
     #rolls stuff
@@ -77,12 +77,12 @@ async def roll(dice : str):
             result += ' - ' + str(modifier * -1)
     result += "`\n" + "Result: " + str(total)
 
-    await bot.say(result)
+    await ctx.send(result)
 
 #send pfp
 @bot.command()
 async def pfp(message):
-    await message.channel.send(content='Here\'s my pfp!', file=discord.File(filename='Mayumi pfp.png'))
+    await message.channel.send(file=discord.File("./Mayumi pfp.png"))
 
 #bot token
 bot.run(tokens['discord'])

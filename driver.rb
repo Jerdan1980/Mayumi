@@ -65,4 +65,9 @@ bot.command(:pfp) do |event|
     bot.send_file(event.channel.id, File.open("Mayumi pfp.png", 'r'), caption: "HELLO WORLD")
 end
 
+bot.command(:draw) do |event|
+	"WIP"
+end
+
+
 bot.run
