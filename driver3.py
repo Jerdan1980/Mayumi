@@ -9,6 +9,9 @@ import logging
 #standard imports
 import random
 import re
+#rdkit imports
+from rdkit import Chem
+from rdkit.Chem import Draw
 
 #check owner
 def is_owner_check(message):
@@ -83,6 +86,19 @@ async def roll(ctx, dice : str):
 @bot.command()
 async def pfp(message):
     await message.channel.send(file=discord.File("./Mayumi pfp.png"))
+
+#chemdraw command
+@bot.command()
+async def chemdraw(ctx, smiles : str):
+	#attempt generating mol
+	mol = Chem.MolFromSmiles(smiles)
+
+	#send file
+	if(mol is None):
+		await ctx.send("Invalid SMILES.")
+	else:
+		Draw.MolToFile(mol, 'images/chemdraw.png')
+		await ctx.send(file=discord.File("images/chemdraw.png"))
 
 #bot token
 bot.run(tokens['discord'])
