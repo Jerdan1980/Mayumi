@@ -1,7 +1,0 @@
-﻿Discord Bot Tutorial: https://dsharpplus.emzi0767.com/articles/intro.html
-Mayumi Github Page: https://www.github.com/jerdan1980/mayumi
-
-API Tutorials:
-Native: https://docs.microsoft.com/en-us/aspnet/web-api/overview/advanced/calling-a-web-api-from-a-net-client
-OSU: https://github.com/ppy/osu-api/wiki https://github.com/Xferno2/CSharpOsu
-Steam: https://steamcommunity.com/dev https://github.com/babelshift/SteamWebAPI2
