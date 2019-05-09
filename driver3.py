@@ -111,12 +111,11 @@ async def profile(ctx):
 	file.close()
 	#check if user exists
 	if author not in profiles:
-		await ctx.send("you dont have a profile yet")
 		profiles[author] = 0
 		with open("profiles.json", 'w') as outfile:
 			json.dump(profiles, outfile)
 	#output
-	await ctx.send("You have: " + str(profiles[author]) + " points")
+	await ctx.send("You have " + str(profiles[author]) + " points")
 
 #bot token
 bot.run(tokens['discord'])
