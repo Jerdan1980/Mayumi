@@ -10,7 +10,7 @@ import logging
 import random
 import re
 #rdkit imports
-from rdkit import Chem
+from rdkit.Chem import AllChem as Chem
 from rdkit.Chem import Draw
 
 #check owner
@@ -97,8 +97,26 @@ async def chemdraw(ctx, smiles : str):
 	if(mol is None):
 		await ctx.send("Invalid SMILES.")
 	else:
+		Chem.Computer2DCoords(mol)
 		Draw.MolToFile(mol, 'images/chemdraw.png')
 		await ctx.send(file=discord.File("images/chemdraw.png"))
+
+#profile command
+@bot.command()
+async def profile(ctx):
+	author = str(ctx.author.id)
+	#import json file
+	with open("./profiles.json") as file:
+		profiles = json.load(file)
+	file.close()
+	#check if user exists
+	if author not in profiles:
+		await ctx.send("you dont have a profile yet")
+		profiles[author] = 0
+		with open("profiles.json", 'w') as outfile:
+			json.dump(profiles, outfile)
+	#output
+	await ctx.send("You have: " + str(profiles[author]) + " points")
 
 #bot token
 bot.run(tokens['discord'])
