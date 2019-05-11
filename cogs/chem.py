@@ -2,7 +2,7 @@
 import asyncio, discord
 from discord.ext import commands
 #rdkit imports
-from rdkit.Chem import AllChem as Chem
+from  rdkit import Chem
 from rdkit.Chem import Draw
 
 class chem(commands.Cog):
@@ -19,7 +19,6 @@ class chem(commands.Cog):
         if(mol is None):
             await ctx.send("Invalid SMILES.")
         else:
-            Chem.Computer2DCoords(mol)
             Draw.MolToFile(mol, 'images/chemdraw.png')
             await ctx.send(file=discord.File("images/chemdraw.png"))
 
