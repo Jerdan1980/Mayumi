@@ -6,11 +6,6 @@ class misc(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    #ping command
-    @commands.command()
-    async def ping(self, ctx):
-        await ctx.send("pong!")
-
     #roll command
     @commands.command()
     async def roll(self, ctx, dice : str):
