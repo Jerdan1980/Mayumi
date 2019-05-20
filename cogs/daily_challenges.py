@@ -37,10 +37,12 @@ class daily_challenges(commands.Cog):
     @create.command()
     async def mc(self, ctx, pts: int, ans: str):
         self.challenges.append(challenge(ctx.guild.id, True, pts, ans))
+        ctx.message.delete()
     
     @create.command()
     async def frq(self, ctx, pts: int, ans: float, err: float):
         self.challenges.append(challenge(ctx.guild.id, False, pts, ans, err))
+        ctx.message.delete()
 
 
     #submit command
