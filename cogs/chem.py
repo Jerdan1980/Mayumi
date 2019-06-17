@@ -13,7 +13,10 @@ class chem(commands.Cog):
     @commands.command()
     async def chemdraw(self, ctx, smiles : str):
         #attempt generating mol
-        mol = Chem.MolFromSmiles(smiles)
+        try:
+            mol = Chem.MolFromSmiles(smiles)
+        except Exception as e:
+            await ctx.send(e.message)
 
         #send file
         if(mol is None):
@@ -21,6 +24,7 @@ class chem(commands.Cog):
         else:
             Draw.MolToFile(mol, 'images/chemdraw.png')
             await ctx.send(file=discord.File("images/chemdraw.png"))
+
 
 def setup(bot):
     bot.add_cog(chem(bot))
