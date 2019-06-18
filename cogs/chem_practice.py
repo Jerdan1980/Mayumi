@@ -17,10 +17,19 @@ class chem_practice(commands.Cog):
                 self.Ksp_list.append(Ksp(line[0], line[1], line[2], line[3]))
         file.close()
 
+    #randomizer
+    @commands.group(pass_context=True)
+    async def quiz(self, ctx):
+        if ctx.invoked_subcommand is None:
+            pick = random.randrange(0, 1)
+            if pick == 0:
+                await molsol(ctx)
+            elif pick == 1:
+                await solrules(ctx)
 
     #molar solubility
-    @commands.command()
-    async def molar_solubility(self, ctx):
+    @quiz.command(hidden=True)
+    async def molsol(self, ctx):
         #shuffle the list to get a random Ksp
         salt = random.shuffle(self.Ksp_list)[0]
         
@@ -47,8 +56,8 @@ class chem_practice(commands.Cog):
                 await ctx.send(f'Incorrect. The correct answer is {salt.S}.')
 
     #solubility rules
-    @commands.command()
-    async def solublitiy_rules(self, ctx):
+    @quiz.command(hidden=True)
+    async def solrules(self, ctx):
         #dict of solubilities
         with open('solubility.json' as f:
             Formula_dict = json.load(f)
