@@ -12,7 +12,7 @@ extensions = (
     'cogs.profile',
     'cogs.chem',
     'cogs.daily_challenges',
-    'cogs.tester'
+    'cogs.tester',
     'cogs.chem_practice'
 )
 
