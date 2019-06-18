@@ -13,6 +13,7 @@ extensions = (
     'cogs.chem',
     'cogs.daily_challenges',
     'cogs.tester'
+    'cogs.chem_practice'
 )
 
 #load tokens
