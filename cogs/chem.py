@@ -25,6 +25,5 @@ class chem(commands.Cog):
             Draw.MolToFile(mol, 'images/chemdraw.png')
             await ctx.send(file=discord.File("images/chemdraw.png"))
 
-
 def setup(bot):
     bot.add_cog(chem(bot))
