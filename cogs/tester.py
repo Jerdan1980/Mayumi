@@ -6,6 +6,11 @@ class tester(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
+    #ping command
+    @commands.command()
+    async def ping(self, ctx):
+        await ctx.send("pong!")
+
     #send pfp
     @commands.command()
     async def pfp(self, ctx):

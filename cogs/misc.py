@@ -6,11 +6,6 @@ class misc(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    #ping command
-    @commands.command()
-    async def ping(self, ctx):
-        await ctx.send("pong!")
-
     #roll command
     @commands.command()
     async def roll(self, ctx, dice : str):
@@ -47,6 +42,49 @@ class misc(commands.Cog):
         result += "`\n" + "Result: " + str(total)
 
         await ctx.send(result)
+
+    #flip a coin command
+    @commands.command()
+    async def flip(self, ctx):
+        flip = random.randint(0,1)
+        if flip == 0:
+            await ctx.send('Heads!')
+        if flip == 1:
+            await ctx.send('Tails!')
+    
+    #8ball command
+    @commands.command()
+    async def quest(self, ctx):
+            answers = ["No way!",
+                       "It is certain",
+                       "Ask again later",
+                       "It is decidedly so",
+                       "Without a doubt",
+                       "Yes, definitely",
+                       "Sure whatever go ahead",
+                       "Don't count on it",
+                       "No way Jose",
+                       "Outlook not good",
+                       "You probably shouldn't, but considering you're asking a computer bot from the Internet, it's not like I can stop you",
+                       "I'm gonna go with a yes on that, but considering you're asking a computer bot from the Internet, I might not be a very trustworthy source for you to base a descision on",
+                       "Bitch you guessin'! Hoo! You was right.",
+                       "As if I care at all",
+                       "I don't know, should you?",
+                       "Obviouusly",
+                       "No shit, Sherlock",
+                       "What do you think?",
+                       "Why are you asking me, an Internet bot?",
+                       "Fuck no",
+                       "Fuck yes",
+                       "Fuck it",
+                       "Four score and seven years ago I said that was a VERY bad idea",
+                       "Treat yo' self",
+                       "No",
+                       "Yes",
+                       "Maybe",
+                       "Definitely not"]
+            random.shuffle(answers) #shuffle answers
+            await ctx.send(answers[0]) #return first
 
 def setup(bot):
     bot.add_cog(misc(bot))

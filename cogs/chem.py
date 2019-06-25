@@ -13,7 +13,10 @@ class chem(commands.Cog):
     @commands.command()
     async def chemdraw(self, ctx, smiles : str):
         #attempt generating mol
-        mol = Chem.MolFromSmiles(smiles)
+        try:
+            mol = Chem.MolFromSmiles(smiles)
+        except Exception as e:
+            await ctx.send(e.message)
 
         #send file
         if(mol is None):
