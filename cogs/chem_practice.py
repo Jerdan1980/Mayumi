@@ -47,8 +47,10 @@ class chem_practice(commands.Cog):
         salt = self.Ksp_list[0]
 
         #ask the question
-        await ctx.send(f'You have {salt.name} with Ksp {salt.Ksp}. What is the molar solubility?')
-        await ctx.send('Reply in format `submit <answer>`. Do not include units. Ex: `submit 3`. You have a 2% tolerance') 
+        quest = f'Question for**{ctx.author.display_name}**:\n'
+        quest += f'\tYou have {salt.name} with Ksp {salt.Ksp}. What is the molar solubility?'
+        quest += '\nReply in format `submit <answer>`. Do not include units. Ex: `submit 3`. You have a 2% tolerance'
+        await ctx.send(quest)
 
         #checker method
         def check(msg):
@@ -81,8 +83,10 @@ class chem_practice(commands.Cog):
         Formula = temp[0]
         
         #ask the question
-        await ctx.send(f'Is {Formula} soluble or insoluble?')
-        await ctx.send('Reply in format `submit <answer>`. Your answer should be either \'soluble\' or \'insoluble\'') 
+        quest = f'Question for **{ctx.author.display_name}**:\n'
+        quest += f'\tIs {Formula} soluble or insoluble?'
+        quest += '\nReply in format `submit <answer>`. Your answer should be either `soluble` or `insoluble`'
+        await ctx.send(quest)
 
         #checker method
         def check(msg):
@@ -116,12 +120,14 @@ class chem_practice(commands.Cog):
         pick_pH = random.choice(["pH", "pOH"])
 
         #print out the question
+        quest = f'Question for **{ctx.author.display_name}**:\n'
         if pick_K:
-            await.ctx.send(f'A solution of {acid.name} has a Ka1 of {acid.Ka1} and the Ka2 of {acid.Ka2}. What is the {pick_pH}? Assume the question does not require the use of the quadratic formula.')
+            quest += f'\tA solution of {acid.name} has a Ka1 of {acid.Ka1} and the Ka2 of {acid.Ka2}. What is the {pick_pH}? Assume the question does not require the use of the quadratic formula.'
         elif not pick_K:
-            await.ctx.send(f'A solution of {acid.name} has a Kb1 of {acid.Kb1} and the Kb2 of {acid.Kb2}. What is the {pick.pH}? Assume the question does not require the use of the quadratic formula.')
-        await.ctx.send('Reply in format `submit <answer>`. Do not include units. Ex: `submit 3`. You have a 2% tolerance')
-        
+            quest += f'\tA solution of {acid.name} has a Kb1 of {acid.Kb1} and the Kb2 of {acid.Kb2}. What is the {pick.pH}? Assume the question does not require the use of the quadratic formula.'
+        quest += '\nReply in format `submit <answer>`. Do not include units. Ex: `submit 3`. You have a 2% tolerance'
+        await ctx.send(quest)
+
         #checker method
         def check(msg):
             return msg.content.startswith('submit') and msg.author == ctx.author and msg.channel == ctx.channel
