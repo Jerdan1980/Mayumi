@@ -24,7 +24,7 @@ class profile(commands.Cog):
             self.profiles[author] = 0
         #add pts and then save
         self.profiles[author] += pts
-        await updateProfiles()
+        await self.updateProfiles()
 
     async def sub_pts(self, author: str, pts: int):
         #check if user exists
@@ -32,7 +32,7 @@ class profile(commands.Cog):
             self.profiles[author] = 0
         #add pts and then save
         self.profiles[author] -= pts
-        await updateProfiles()
+        await self.updateProfiles()
 
     #profile command
     @commands.command()
@@ -41,7 +41,7 @@ class profile(commands.Cog):
         #check if user exists
         if author not in self.profiles:
             self.profiles[author] = 0
-            await updateProfiles()
+            await self.updateProfiles()
         #output
         await ctx.send("You have " + str(self.profiles[author]) + " points")
 

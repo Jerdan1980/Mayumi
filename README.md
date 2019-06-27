@@ -6,13 +6,11 @@ A multipurpose discord bot
 ## Requirements
 Mayumi requires Anaconda (python 3.6.8), rdkit, and discord.py.
 1. Install [Anaconda](https://www.anaconda.com/distribution/#download-section)
-2. Open terminal and run
+2. Clone the github repo
+3. Open (Anaconda) terminal in the repo folder and run
 ```
-conda create -c rdkit my-env-name rdkit
-conda activate my-env-name
-conda install pip
+conda create -f environment.yml
 ```
-3. Use `which pip` to ensure that the current pip is located at the current virtual environment, then run `pip install discord.py`
 4. Create your own [tokens.json](./sampletoken.json) file somewhere in your system
 ## Running the code
 1. Open terminal and run `driver3.py` on the environment
