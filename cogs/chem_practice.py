@@ -49,7 +49,7 @@ class chem_practice(commands.Cog):
 
         #ask the question
         quest = f'Question for**{ctx.author.display_name}**:\n'
-        quest += f'\tYou have {salt.name} with Ksp {salt.Ksp}. What is the molar solubility?'
+        quest += f'\tYou have `{salt.name}` with Ksp {salt.Ksp}. What is the molar solubility?'
         quest += '\nReply in format `submit <answer>`. Do not include units. Ex: `submit 3`. You have a 2% tolerance'
         await ctx.send(quest)
 
@@ -85,7 +85,7 @@ class chem_practice(commands.Cog):
         
         #ask the question
         quest = f'Question for **{ctx.author.display_name}**:\n'
-        quest += f'\tIs {Formula} soluble or insoluble?'
+        quest += f'\tIs `{Formula}` soluble or insoluble?'
         quest += '\nReply in format `submit <answer>`. Your answer should be either `soluble` or `insoluble`'
         await ctx.send(quest)
 
@@ -122,7 +122,7 @@ class chem_practice(commands.Cog):
 
         #print out the question
         quest = f'Question for **{ctx.author.display_name}**:\n'
-        quest += f'\tA solution of {acid.name} has a '
+        quest += f'\tA solution of `{acid.name}` has a '
         if pick_K:
             quest += "Ka1 of {:.3e} and the Ka2 of {:.3e}. ".format(acid.Ka1, acid.Ka2)
         elif not pick_K:
