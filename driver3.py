@@ -13,7 +13,8 @@ extensions = (
     'cogs.chem',
     'cogs.daily_challenges',
     'cogs.tester',
-    'cogs.chem_practice'
+    'cogs.chem_practice',
+    'cogs.server_stats'
 )
 
 #load tokens
@@ -73,7 +74,7 @@ async def reload(ctx):
 @bot.command(hidden=True)
 @is_owner()
 async def stop(ctx):
-    await ctx.send('Shutting down...')
+    await ctx.send('Logging out!')
     await bot.logout()
 
 #bot token
