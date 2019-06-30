@@ -53,7 +53,7 @@ class misc(commands.Cog):
             await ctx.send('Tails!')
     
     #8ball command
-    @commands.command()
+    @commands.command(alias="8ball")
     async def quest(self, ctx):
             answers = ["No way!",
                        "It is certain",
@@ -65,8 +65,8 @@ class misc(commands.Cog):
                        "Don't count on it",
                        "No way Jose",
                        "Outlook not good",
-                       "You probably shouldn't, but considering you're asking a computer bot from the Internet, it's not like I can stop you",
-                       "I'm gonna go with a yes on that, but considering you're asking a computer bot from the Internet, I might not be a very trustworthy source for you to base a descision on",
+                       "You probably shouldn't, but it's not like I can stop you",
+                       "I'm gonna go with a yes on that, but take that with a grain of salt",
                        "Bitch you guessin'! Hoo! You was right.",
                        "As if I care at all",
                        "I don't know, should you?",
@@ -74,9 +74,6 @@ class misc(commands.Cog):
                        "No shit, Sherlock",
                        "What do you think?",
                        "Why are you asking me, an Internet bot?",
-                       "Fuck no",
-                       "Fuck yes",
-                       "Fuck it",
                        "Four score and seven years ago I said that was a VERY bad idea",
                        "Treat yo' self",
                        "No",
