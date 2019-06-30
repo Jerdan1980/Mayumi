@@ -9,13 +9,13 @@ Mayumi requires Anaconda (python 3.6.8), rdkit, and discord.py.
 2. Clone the github repo
 3. Open (Anaconda) terminal in the repo folder and run
 ```
-conda create -f environment.yml
+conda env create -f environment.yml
 ```
 4. Create your own [tokens.json](./sampletoken.json) file somewhere in your system
 ## Running the code
 1. Open terminal and run `driver3.py` on the environment
 ```
-conda activate my-env-name
+conda activate discord
 python driver3.py
 ```
 2. It will ask for the tokens filepath. Type in the filepath to your `tokens.json` file. The terminal will then say `Loaded!`
