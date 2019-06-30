@@ -4,6 +4,7 @@ from discord.ext import commands
 #standard imports
 import random
 import json
+import math
 
 #class holding questions
 class chem_practice(commands.Cog):
@@ -24,7 +25,7 @@ class chem_practice(commands.Cog):
         with open('resources/polyacids.txt', 'r') as f:
             for line in f:
                 line = line.split(',')
-                alist.append(pH(line[0], 1, line[1], line[2], line[3]))
+                alist.append(pH(line[0], 1, line[1], line[2]))
         f.close()
         self.acid_list = alist
 
@@ -68,7 +69,7 @@ class chem_practice(commands.Cog):
                 profile = self.bot.get_cog('profile')
                 await profile.add_pts(str(ctx.author.id), 1)
             else:
-                await ctx.send(f'Incorrect. The correct answer is {round(salt.S, 3)}.')
+                await ctx.send("Incorrect. The correct answer is {:.3e}".format(salt.S))
 
     #solubility rules
     async def solrules(self, ctx):
@@ -112,8 +113,8 @@ class chem_practice(commands.Cog):
     #polyprotic acids
     async def polyacids(self, ctx):
         #shuffle the list to get a random acid
-        random.shuffle(self.acids_list)
-        acid = self.acids_list[0]
+        random.shuffle(self.acid_list)
+        acid = self.acid_list[0]
 
         #randomize the question
         pick_K = bool(random.getrandbits(1))
@@ -121,10 +122,12 @@ class chem_practice(commands.Cog):
 
         #print out the question
         quest = f'Question for **{ctx.author.display_name}**:\n'
+        quest += f'\tA solution of {acid.name} has a '
         if pick_K:
-            quest += f'\tA solution of {acid.name} has a Ka1 of {acid.Ka1} and the Ka2 of {acid.Ka2}. What is the {pick_pH}? Assume the question does not require the use of the quadratic formula.'
+            quest += "Ka1 of {:.3e} and the Ka2 of {:.3e}. ".format(acid.Ka1, acid.Ka2)
         elif not pick_K:
-            quest += f'\tA solution of {acid.name} has a Kb1 of {acid.Kb1} and the Kb2 of {acid.Kb2}. What is the {pick.pH}? Assume the question does not require the use of the quadratic formula.'
+            quest += "Kb1 of {:.3e} and the Kb2 of {:.3e}. ".format(acid.Kb1, acid.Kb2)
+        quest += f'What is the {pick_pH}? Assume the question does not require the use of the quadratic formula.'
         quest += '\nReply in format `submit <answer>`. Do not include units. Ex: `submit 3`. You have a 2% tolerance'
         await ctx.send(quest)
 
@@ -134,11 +137,11 @@ class chem_practice(commands.Cog):
 
         #check if it's right
         try:
-            msg = await self.bot.wait_for('message', Timeout=600.0, check=check)
+            msg = await self.bot.wait_for('message', timeout=120.0, check=check)
         except asyncio.TimeoutError:
             await ctx.send(f'Out of time! the correct answer is {pH}')
         else: 
-            answer = double(msg.content.split()[1])
+            answer = float(msg.content.split()[1])
             if pick_pH and (abs(answer-acid.pH) / acid.pH * 100) <= 2:
                 await ctx.send('Correct.')
                 profile = self.bot.get_cog('profile')
@@ -148,7 +151,7 @@ class chem_practice(commands.Cog):
                 profile = self.bot.get_cog('profile')
                 await profile.add_pts(str(ctx.author.id), 1)
             else:
-                await ctx.send(f'Incorrect. The correct answer is {acid.pH}')
+                await ctx.send(f'Incorrect. The correct answer is {round(acid.pH, 3)}')
 
 
 def setup(bot):
@@ -170,16 +173,16 @@ class pH():
         self.is_acid = acidbool
         
         if self.is_acid:
-            self.Ka1 = K1
-            self.Ka2 = K2
+            self.Ka1 = float(K1)
+            self.Ka2 = float(K2)
             self.Kb1 = 1e-14 / self.Ka1
             self.Kb2 = 1e-14 / self.Ka2
-            self.pH = -log(pow(K1 * K2, 0.5 ))
+            self.pH = -1 * math.log10(pow(self.Ka1 * self.Ka2, 0.5 ))
             self.pOH = 14 - self.pH
         elif not self.is_acid:
-            self.Kb1 = K1
-            self.Kb2 = K2
+            self.Kb1 = float(K1)
+            self.Kb2 = float(K2)
             self.Ka1 = 1e-14 / self.Kb1
             self.Ka2 = 1e-14 / self.Kb2
-            self.pOH = -log(pow(K1 * K2, 0.5 ))
+            self.pOH = -1 * math.log(pow(self.Kb1 * self.Kb2, 0.5 ))
             self.pH = 14 - self.pOH
