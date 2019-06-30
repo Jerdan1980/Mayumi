@@ -73,6 +73,7 @@ async def reload(ctx):
 @bot.command(hidden=True)
 @is_owner()
 async def stop(ctx):
+    await ctx.send('Shutting down...')
     await bot.logout()
 
 #bot token
