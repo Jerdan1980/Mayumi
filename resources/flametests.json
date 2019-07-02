@@ -1,0 +1,12 @@
+{
+    "Li": ["red"],
+    "Na": ["orange", "yellow"],
+    "K": ["purple", "indigo", "violet"],
+    "Rb":["red", "pink"],
+    "Cs": ["blue"],
+    "Ca": ["red"],
+    "Sr": ["red"],
+    "Ba": ["green"],
+    "Cu": ["blue"],
+    "Fe": ["yellow", "brown"]
+}
