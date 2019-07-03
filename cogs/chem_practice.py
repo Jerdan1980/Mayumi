@@ -32,8 +32,12 @@ class chem_practice(commands.Cog):
 
     #randomizer
     @commands.command()
-    async def quiz(self, ctx):
-        pick = random.randrange(0, 4)
+    async def quiz(self, ctx, pick: int = -1):
+        #randomize if no user input
+        #user input is meant for testing purposes only
+        if pick == -1:
+            pick = random.randrange(0, 4)
+
         if pick == 0:
             await self.molsol(ctx)
         elif pick == 1:
@@ -50,7 +54,7 @@ class chem_practice(commands.Cog):
         salt = self.Ksp_list[0]
 
         #ask the question
-        quest = f'Question for**{ctx.author.display_name}**:\n'
+        quest = f'Question for **{ctx.author.display_name}**:\n'
         quest += f'\tYou have `{salt.name}` with Ksp {salt.Ksp}. What is the molar solubility? Assume the question does not require the use of the quadratic formula.'
         quest += '\nReply in format `submit <answer>`. Do not include units. Ex: `submit 3`. You have a 2% tolerance'
         await ctx.send(quest)
@@ -63,15 +67,15 @@ class chem_practice(commands.Cog):
         try:
             msg = await self.bot.wait_for('message', timeout=120.0, check=check)
         except asyncio.TimeoutError:
-            await ctx.send(f'Out of time! the correct answer is ||{salt.S}||')
+            await ctx.send(f'**{ctx.author.display_name}** out of time! the correct answer is ||{salt.S}||')
         else:
             answer = float(msg.content.split()[1])
             if (abs(answer-salt.S) / salt.S * 100) <= 2:
-                await ctx.send('Correct.')
+                await ctx.send(f'**{ctx.author.display_name}** correct.')
                 profile = self.bot.get_cog('profile')
                 await profile.add_pts(str(ctx.author.id), 1)
             else:
-                await ctx.send("Incorrect. The correct answer is {:.3e}".format(salt.S))
+                await ctx.send("**{:}** incorrect. The correct answer is {:.3e}".format(ctx.author.display_name, salt.S))
 
     #solubility rules
     async def solrules(self, ctx):
@@ -100,17 +104,17 @@ class chem_practice(commands.Cog):
             msg = await self.bot.wait_for('message', timeout=45.0, check=check)
         except asyncio.TimeoutError:
             if Formula_dict[Formula]:
-                await ctx.send(f'Out of time! the correct answer is: ||True||')
+                await ctx.send(f'**{ctx.author.display_name}** out of time! the correct answer is: ||Soluble||')
             else:
-                await ctx.send(f'Out of time! the correct answer is: ||False||')
+                await ctx.send(f'**{ctx.author.display_name}** out of time! the correct answer is: ||Insoluble||')
         else:
             answer = msg.content.split()[1]
             if (answer == 'soluble' and answer) or (answer == 'insoluble' and not answer):
-                await ctx.send('Correct.')
+                await ctx.send(f'**{ctx.author.display_name}** correct.')
                 profile = self.bot.get_cog('profile')
                 await profile.add_pts(str(ctx.author.id), 1)
             else:
-                await ctx.send('Incorrect.')
+                await ctx.send(f'**{ctx.author.display_name}** incorrect.')
 
     #polyprotic acids
     async def polyacids(self, ctx):
@@ -145,15 +149,15 @@ class chem_practice(commands.Cog):
         else: 
             answer = float(msg.content.split()[1])
             if pick_pH and (abs(answer-acid.pH) / acid.pH * 100) <= 2:
-                await ctx.send('Correct.')
+                await ctx.send(f'**{ctx.author.display_name}** correct.')
                 profile = self.bot.get_cog('profile')
                 await profile.add_pts(str(ctx.author.id), 1)
             elif not pick_pH and (abs(answer-acid.pOH) / acid.pH * 100) <= 2:
-                await ctx.send('Correct.')
+                await ctx.send(f'**{ctx.author.display_name}** correct.')
                 profile = self.bot.get_cog('profile')
                 await profile.add_pts(str(ctx.author.id), 1)
             else:
-                await ctx.send(f'Incorrect. The correct answer is {round(acid.pH, 3)}')
+                await ctx.send(f'**{ctx.author.display_name}** incorrect. The correct answer is {round(acid.pH, 3)}')
 
     #flame tests
     async def flametests(self,ctx):
@@ -182,15 +186,15 @@ class chem_practice(commands.Cog):
         try:
             msg = await self.bot.wait_for('message', timeout=30.0, check=check)
         except asyncio.TimeoutError:
-            await ctx.send(f'Out of time! the correct answer(s) are ||{", ".join(Ion_dict[ion])}||')
+            await ctx.send(f'**{ctx.author.display_name}** out of time! the correct answer(s) are ||{", ".join(Ion_dict[ion])}||')
         else:
             answer = msg.content.split()[1]
             if answer.lower() in Ion_dict[ion]:
-                await ctx.send('Correct.')
+                await ctx.send(f'**{ctx.author.display_name}** correct.')
                 profile = self.bot.get_cog('profile')
                 await profile.add_pts(str(ctx.author.id), 1)
             else:
-                await ctx.send(f'Incorrect. The correct answer(s) are {", ".join(Ion_dict[ion])}.')
+                await ctx.send(f'**{ctx.author.display_name}** incorrect. The correct answer(s) are {", ".join(Ion_dict[ion])}.')
 
 
 def setup(bot):
