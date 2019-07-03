@@ -36,14 +36,40 @@ class profile(commands.Cog):
 
     #profile command
     @commands.command()
-    async def profile(self, ctx):
-        author = str(ctx.author.id)
-        #check if user exists
-        if author not in self.profiles:
-            self.profiles[author] = 0
-            await self.updateProfiles()
-        #output
-        await ctx.send("You have " + str(self.profiles[author]) + " points")
+    async def profile(self, ctx, query: str = ""):
+        if query == "":
+            author = str(ctx.author.id)
+            #check if user exists
+            if author not in self.profiles:
+                self.profiles[author] = 0
+                await self.updateProfiles()
+            #output
+            await ctx.send("You have " + str(self.profiles[author]) + " points")
+
+        else:
+            try:
+                auth = ctx.message.mentions[0]
+                #check if user exists
+                if str(auth.id) not in self.profiles:
+                    self.profiles[str(auth.id)] = 0
+                    await self.updateProfiles()
+                #output
+                await ctx.send(f"**{auth.display_name}** has {str(self.profiles[str(auth.id)])} points")
+            except Exception:
+                    found = False
+                    for mem in ctx.channel.guild.members:
+                        if not found and ((query.lower() in mem.name.lower()) or (query.lower() in mem.display_name.lower())):
+                            found = True
+                            auth = mem
+                    if found:
+                        #check if user exists
+                        if str(auth.id) not in self.profiles:
+                            self.profiles[str(auth.id)] = 0
+                            await self.updateProfiles()
+                        #output
+                        await ctx.send(f"**{auth.display_name}** has {str(self.profiles[str(auth.id)])} points")
+                    else:
+                        await ctx.send('Member not found!')
 
 def setup(bot):
     bot.add_cog(profile(bot))
