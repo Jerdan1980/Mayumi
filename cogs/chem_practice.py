@@ -145,7 +145,10 @@ class chem_practice(commands.Cog):
         try:
             msg = await self.bot.wait_for('message', timeout=120.0, check=check)
         except asyncio.TimeoutError:
-            await ctx.send(f'Out of time! the correct answer is {pH}')
+            if pick_pH:
+                await ctx.send(f'**{ctx.author.display_name}** out of time! The correct answer is ||{round(acid.pH, 3)}||')
+            else:
+                await ctx.send(f'**{ctx.author.display_name}** out of time! The correct answer is ||{round(acid.pOH, 3)}||')
         else: 
             answer = float(msg.content.split()[1])
             if pick_pH and (abs(answer-acid.pH) / acid.pH * 100) <= 2:
