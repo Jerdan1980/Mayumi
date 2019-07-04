@@ -230,5 +230,5 @@ class pH():
             self.Kb2 = float(K2)
             self.Ka1 = 1e-14 / self.Kb1
             self.Ka2 = 1e-14 / self.Kb2
-            self.pOH = -1 * math.log(pow(self.Kb1 * self.Kb2, 0.5 ))
+            self.pOH = -1 * math.log10(pow(self.Kb1 * self.Kb2, 0.5 ))
             self.pH = 14 - self.pOH
