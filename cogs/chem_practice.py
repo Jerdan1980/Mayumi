@@ -155,7 +155,7 @@ class chem_practice(commands.Cog):
                 await ctx.send(f'**{ctx.author.display_name}** correct.')
                 profile = self.bot.get_cog('profile')
                 await profile.add_pts(str(ctx.author.id), 1)
-            elif not pick_pH and (abs(answer-acid.pOH) / acid.pH * 100) <= 2:
+            elif not pick_pH and (abs(answer-acid.pOH) / acid.pOH * 100) <= 2:
                 await ctx.send(f'**{ctx.author.display_name}** correct.')
                 profile = self.bot.get_cog('profile')
                 await profile.add_pts(str(ctx.author.id), 1)
