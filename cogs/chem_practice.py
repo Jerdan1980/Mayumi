@@ -109,7 +109,7 @@ class chem_practice(commands.Cog):
                 await ctx.send(f'**{ctx.author.display_name}** out of time! the correct answer is: ||Insoluble||')
         else:
             answer = msg.content.split()[1]
-            if (answer == 'soluble' and answer) or (answer == 'insoluble' and not answer):
+            if (answer == 'soluble' and Formula_dict[Formula]) or (answer == 'insoluble' and not Formula_dict[Formula]):
                 await ctx.send(f'**{ctx.author.display_name}** correct.')
                 profile = self.bot.get_cog('profile')
                 await profile.add_pts(str(ctx.author.id), 1)
