@@ -7,15 +7,7 @@ from discord.ext import commands
 import discord.utils
 import logging
 
-extensions = (
-    'cogs.misc',
-    'cogs.profile',
-    'cogs.chem',
-    'cogs.daily_challenges',
-    'cogs.tester',
-    'cogs.chem_practice',
-    'cogs.server_stats'
-)
+extensions = open('loader.txt').read().splitlines()
 
 #load tokens
 filePath = input("token json filepath: ")
