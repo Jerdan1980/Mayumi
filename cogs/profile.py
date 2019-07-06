@@ -15,7 +15,7 @@ class profile(commands.Cog):
     #update json
     async def updateProfiles(self):
         with open("profiles.json", 'w') as outfile:
-            json.dump(self.profiles, outfile)
+            json.dump(self.profiles, outfile, indent=4)
 
     #points handling
     async def add_pts(self, author: str, pts: int):
