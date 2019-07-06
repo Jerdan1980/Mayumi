@@ -21,8 +21,13 @@ class acids(commands.Cog):
         self.acid_list = alist
 
     #randomizer
-    async def rando(self, ctx):
-        await self.polyacids(ctx)
+    async def rando(self, ctx, question):
+        #randomize
+        if question == -1:
+            question = random.randrange(0, 1)
+        
+        if question == 0:
+            await self.polyacids(ctx)
 
     #polyprotic acids
     async def polyacids(self, ctx):

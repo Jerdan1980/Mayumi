@@ -11,8 +11,12 @@ class descriptive(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    async def rando(self, ctx):
-        await self.flametests(ctx)
+    async def rando(self, ctx, question):
+        if question == -1:
+            question = random.randrange(0, 1)
+        
+        if question == 0:
+            await self.flametests(ctx)
 
     #flame tests
     async def flametests(self,ctx):

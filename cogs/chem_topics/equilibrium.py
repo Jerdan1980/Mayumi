@@ -21,8 +21,12 @@ class equilibrium(commands.Cog):
         self.Ksp_list = klist
 
     #randomizer
-    async def rando(self, ctx):
-        await self.molsol(ctx)
+    async def rando(self, ctx, question):
+        if question == -1:
+            question = random.randrange(0,1)
+
+        if question == 0:
+            await self.molsol(ctx)
     
     #molar solubility
     async def molsol(self, ctx):

@@ -12,8 +12,12 @@ class matter(commands.Cog):
         self.bot = bot
 
     #randomizer
-    async def rando(self, ctx):
-        await self.solrules(ctx)
+    async def rando(self, ctx, question):
+        if question == -1:
+            question = random.randrange(0,1)
+        
+        if question == 0:
+            await self.solrules(ctx)
     
     #solubility rules
     async def solrules(self, ctx):
