@@ -16,7 +16,7 @@ class acids(commands.Cog):
         with open('resources/polyacids.txt', 'r') as f:
             for line in f:
                 line = line.split(',')
-                alist.append(pH(line[0], 1, line[1], line[2]))
+                alist.append(pH(line[0], line[1], line[2]))
         f.close()
         self.acid_list = alist
 
@@ -76,21 +76,12 @@ def setup(bot):
 
 #class for polyacids
 class pH():
-    def __init__(self, acid_name, acidbool, K1, K2):
+    def __init__(self, acid_name, K1, K2):
         self.name = acid_name
         self.is_acid = acidbool
-        
-        if self.is_acid:
-            self.Ka1 = float(K1)
-            self.Ka2 = float(K2)
-            self.Kb1 = 1e-14 / self.Ka1
-            self.Kb2 = 1e-14 / self.Ka2
-            self.pH = -1 * math.log10(pow(self.Ka1 * self.Ka2, 0.5 ))
-            self.pOH = 14 - self.pH
-        elif not self.is_acid:
-            self.Kb1 = float(K1)
-            self.Kb2 = float(K2)
-            self.Ka1 = 1e-14 / self.Kb1
-            self.Ka2 = 1e-14 / self.Kb2
-            self.pOH = -1 * math.log10(pow(self.Kb1 * self.Kb2, 0.5 ))
-            self.pH = 14 - self.pOH
+        self.Ka1 = float(K1)
+        self.Ka2 = float(K2)
+        self.Kb1 = 1e-14 / self.Ka1
+        self.Kb2 = 1e-14 / self.Ka2
+        self.pH = -1 * math.log10(pow(self.Ka1 * self.Ka2, 0.5 ))
+        self.pOH = 14 - self.pH
