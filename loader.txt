@@ -8,7 +8,7 @@ cogs.server_stats
 cogs.chem_topics.acids
 cogs.chem_topics.bonding
 cogs.chem_topics.descriptive
-cogs.chem_topics.equilibirum
+cogs.chem_topics.equilibrium
 cogs.chem_topics.kinetics
 cogs.chem_topics.matter
 cogs.chem_topics.orgo
