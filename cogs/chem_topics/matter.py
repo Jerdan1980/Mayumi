@@ -63,64 +63,65 @@ class matter(commands.Cog):
     #solubility rules multiple choice questions
     async def solrulesMC(self, ctx):
         #dict of solubilities
-        with open('solubility.json' as f:
-            Formula_dict = json.load(f))
+        with open('resources/solubility.json') as f:
+            Formula_dict = json.load(f)
         f.close()        
 
         #get the answer (sol/insol)
-        pick_sol = bool(random.getrandbits(1))
+        pick_sol = random.randrange(0, 1)
 
         #set the vars
-        solubility = Formula_dict.keys()
+        solubility = list(Formula_dict.keys())
         pick = random.randrange(0, 5)
-        choices = [None} * 5
+        choices = [None] * 5
 
         #get the right answer choice
-        while true:
+        while True:
             random.shuffle(solubility)
             if pick_sol == Formula_dict[solubility[0]]:
-            choices[pick] = f"**{pick}**) {Formula_dict[solubility[0]]}"
+                choices[pick] = f"**{pick}**) {solubility[0]}"
             break
 
         #get the wrong answer choices
         counter = 0
-        while True:
+        while counter < 5:
             #skip the section if already filled
-            if choices[counter] != None:
+            if counter == pick:
                 counter += 1
                 continue
-            #else continue on
-            random.shuffle(solubility)
-            if pick_sol != Formula_dict[solubulity[0]]:
-            choices[counter] = f"**{counter}**) {Formula_dict[solubility[0]]}"
-            counter += 1
-            if counter >= 5:
-                break
+            else:
+                random.shuffle(solubility)
+                if pick_sol != Formula_dict[solubility[0]]:
+                    choices[counter] = f"**{counter}**) {solubility[0]}"
+                    counter += 1
 
         #ask question and print list
-            quest = f'Question for **{ctx.author.display_name}**. (1 point)\n'
-            quest += f'\tWhich of these choices is {pick_sol}?'
-            quest += "\n\t\t".join(ans_list)
-            quest += 'Answer in format `submit answer`. Ex: `submit 1`'
+        quest = f'Question for **{ctx.author.display_name}**. (1 point)\n'
+        if pick_sol:
+            quest += f'\tWhich of these choices is soluble?\n\t\t'
+        else:
+            quest += '\tWhich of these choices is insoluble?\n\t\t'
+        quest += "\n\t\t".join(choices)
+        quest += '\nAnswer in format `submit answer`. Ex: `submit 1`'
         await ctx.send(quest)
 
         #checker method
-            def check(msg, user):
-                return msg.content.startswith('submit') and user == ctx.author:
+        def check(msg):
+            return msg.content.startswith('submit') and msg.author == ctx.author and msg.channel == ctx.channel
 
         #grab input and check for correctness
-            try:
-                msg = await ctx.wait_for('message', Timeout=45.0, check=check)
-            except asyncio.TimeoutError:
-                await ctx.send(f'**{ctx.author.display_name}** out of time! the correct answer is ||{pick}||')
+        try:
+            msg = await self.bot.wait_for('message', timeout=45.0, check=check)
+        except asyncio.TimeoutError:
+            await ctx.send(f'**{ctx.author.display_name}** out of time! the correct answer is ||{pick}||')
+        else:
+            answer = int(msg.content.split()[1])
+            if answer == pick:
+                await ctx.send(f'**{ctx.author.display_name}** correct.')
+                profile = self.bot.get_cog('profile')
+                await profile.add_pts(str(ctx.author.id), 1)
             else:
-                answer = int(msg.content.split()[1])
-                if answer == pick:
-                    await ctx.send(f'**{ctx.author.display_name}** correct.')
-                    profile = self.bot.get_cog('profile')
-                    await profile.add_pts(str(ctx.author.id), 1)
-                else:
-                    await ctx.send(f'**{ctx.author.display_name}** incorrect. The correct answer is {pick}.')
+                await ctx.send(f'**{ctx.author.display_name}** incorrect. The correct answer is {pick}.')
 
 
 def setup(bot):
