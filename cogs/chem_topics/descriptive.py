@@ -31,7 +31,7 @@ class descriptive(commands.Cog):
         ion = temp[0]
 
         #ask the question
-        quest = f'Question for **{ctx.author.name}**\n'
+        quest = f'Question for **{ctx.author.name}**. (1 point)\n'
         quest += f'\tWhat color is the flame test of {ion}?\n'
         quest += 'Reply in format `submit <answer>`.Please respond either a color of the rainbow or white, brown, or black. Ex: `submit red`.\n'
         quest += 'Any one of possible colors will be accepted as correct.'

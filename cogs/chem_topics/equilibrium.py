@@ -35,7 +35,7 @@ class equilibrium(commands.Cog):
         salt = self.Ksp_list[0]
 
         #ask the question
-        quest = f'Question for **{ctx.author.display_name}**:\n'
+        quest = f'Question for **{ctx.author.display_name}**. (1 point)\n'
         quest += f'\tYou have `{salt.name}` with Ksp {salt.Ksp}. What is the molar solubility? Assume the question does not require the use of the quadratic formula.'
         quest += '\nReply in format `submit <answer>`. Do not include units. Ex: `submit 3`. You have a 2% tolerance'
         await ctx.send(quest)

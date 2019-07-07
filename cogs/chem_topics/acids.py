@@ -40,7 +40,7 @@ class acids(commands.Cog):
         pick_pH = random.choice(["pH", "pOH"])
 
         #print out the question
-        quest = f'Question for **{ctx.author.display_name}**:\n'
+        quest = f'Question for **{ctx.author.display_name}**. (1 point)\n'
         quest += f'\tA solution of `{acid.name}` has a '
         if pick_K:
             quest += "Ka1 of {:.3e} and the Ka2 of {:.3e}. ".format(acid.Ka1, acid.Ka2)
