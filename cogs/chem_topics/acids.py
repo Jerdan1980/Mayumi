@@ -83,7 +83,6 @@ def setup(bot):
 class pH():
     def __init__(self, acid_name, K1, K2):
         self.name = acid_name
-        self.is_acid = acidbool
         self.Ka1 = float(K1)
         self.Ka2 = float(K2)
         self.Kb1 = 1e-14 / self.Ka1
