@@ -97,7 +97,7 @@ class matter(commands.Cog):
 
         #ask question and print list
         quest = f'Question for **{ctx.author.display_name}**. (1 point)\n'
-        if pick_sol:
+        if pick_sol == 1:
             quest += f'\tWhich of these choices is soluble?\n\t\t'
         else:
             quest += '\tWhich of these choices is insoluble?\n\t\t'
