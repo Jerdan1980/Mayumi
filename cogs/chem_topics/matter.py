@@ -80,7 +80,7 @@ class matter(commands.Cog):
             random.shuffle(solubility)
             if pick_sol == Formula_dict[solubility[0]]:
                 choices[pick] = f"**{pick}**) {solubility[0]}"
-            break
+                break
 
         #get the wrong answer choices
         counter = 0
