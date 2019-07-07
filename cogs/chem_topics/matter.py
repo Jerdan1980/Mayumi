@@ -68,7 +68,7 @@ class matter(commands.Cog):
         f.close()        
 
         #get the answer (sol/insol)
-        pick_sol = random.randrange(0, 1)
+        pick_sol = random.randrange(0, 2)
 
         #set the vars
         solubility = list(Formula_dict.keys())
