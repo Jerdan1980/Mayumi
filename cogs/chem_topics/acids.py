@@ -42,6 +42,7 @@ class acids(commands.Cog):
         quest = f'Question for **{ctx.author.display_name}**. (1 point)\n'
         quest += f'\tA solution of `{acid.name}` has a '
         quest += "Ka1 of {:.3e} and the Ka2 of {:.3e}. ".format(acid.Ka1, acid.Ka2)
+        quest += f'What is the {pick_pH}?'
         quest += '\nReply in format `submit <answer>`. Do not include units. Ex: `submit 3`. You have a 2% tolerance'
         await ctx.send(quest)
 
