@@ -68,8 +68,10 @@ class acids(commands.Cog):
                 profile = self.bot.get_cog('profile')
                 await profile.add_pts(str(ctx.author.id), 1)
             else:
-                await ctx.send(f'**{ctx.author.display_name}** incorrect. The correct answer is {round(acid.pH, 3)}')
-
+                if pick_pH:
+                    await ctx.send(f'**{ctx.author.display_name}** incorrect. The correct answer is {round(acid.pH, 3)}')
+                else:
+                    await ctx.send(f'**{ctx.author.display_name}** incorrect. The correct answer is {round(acid.pOH, 3)}')
 
 def setup(bot):
     bot.add_cog(acids(bot))
