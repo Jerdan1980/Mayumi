@@ -2,7 +2,6 @@ H2PO4-,7.5e-3,6.2e-8
 HPO42-,6.2e-8,4.2e-13
 HSO3-,1.7e-2,6.4e-8
 HCO3-,4.3e-7,5.6e-11
-HS-,1.0e-7,1.0e-19
 HC2O4-,5.9e-2,6.4e-5
 Bimalonic ion,1.5e-3,2.0e-6
 H5TeO6-,2.0e-8,1.0e-11
@@ -10,5 +9,5 @@ H4TeO5 2-,1.0e-11,3.0e-15
 HSeO3-,3.5e-3,5.0e-8
 HTeO3-,3.0e-3,2.0e-8
 Biascorbic ion,7.9e-5,1.6e-12
-Bicitrous ion,7.1e-4,1.7e-5
-Dihydrogen citrous ion,1.7e-5,6.4e-6
+Bicitric ion,7.1e-4,1.7e-5
+Dihydrogen citric ion,1.7e-5,6.4e-6
