@@ -60,16 +60,16 @@ class acids(commands.Cog):
                 await ctx.send(f'**{ctx.author.display_name}** out of time! The correct answer is ||{round(acid.pOH, 3)}||')
         else: 
             answer = float(msg.content.split()[1])
-            if (pick_pH == "pH") and (abs(answer-acid.pH) / acid.pH * 100) <= 2:
+            if pick_pH and (abs(answer-acid.pH) / acid.pH * 100) <= 2:
                 await ctx.send(f'**{ctx.author.display_name}** correct.')
                 profile = self.bot.get_cog('profile')
                 await profile.add_pts(str(ctx.author.id), 1)
-            elif (pick_pH == "pOH") and (abs(answer-acid.pOH) / acid.pOH * 100) <= 2:
+            elif not pick_pH and (abs(answer-acid.pOH) / acid.pOH * 100) <= 2:
                 await ctx.send(f'**{ctx.author.display_name}** correct.')
                 profile = self.bot.get_cog('profile')
                 await profile.add_pts(str(ctx.author.id), 1)
             else:
-                if pick_pH == "pH":
+                if pick_pH:
                     await ctx.send(f'**{ctx.author.display_name}** incorrect. The correct answer is {round(acid.pH, 3)}')
                 else:
                     await ctx.send(f'**{ctx.author.display_name}** incorrect. The correct answer is {round(acid.pOH, 3)}')
@@ -84,4 +84,6 @@ class pH():
         self.Ka1 = float(K1)
         self.Ka2 = float(K2)
         self.pH = -1 * math.log10(pow(self.Ka1 * self.Ka2, 0.5 ))
-        self.pOH = 14 - self.pH
+        self.pOH = 14 + math.log10(pow(self.Ka1 * self.Ka2, 0.5 ))
+
+
