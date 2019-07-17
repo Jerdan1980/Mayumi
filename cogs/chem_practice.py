@@ -17,10 +17,11 @@ class chem_practice(commands.Cog):
         equilibrium = self.bot.get_cog("equilibrium")
         matter = self.bot.get_cog("matter")
         acids = self.bot.get_cog("acids")
+        orgo = self.bot.get_cog("orgo")
 
         #get random
         if topic == -1:
-            topic = random.randrange(0, 4)
+            topic = random.randrange(0, 5)
         
         #activate topic
         if topic == 0:
@@ -31,6 +32,8 @@ class chem_practice(commands.Cog):
             await matter.rando(ctx, question)
         if topic == 3:
             await acids.rando(ctx, question)
+        if topic == 4:
+            await orgo.rando(ctx, question)
 
 
 def setup(bot):

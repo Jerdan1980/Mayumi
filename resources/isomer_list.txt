@@ -1,0 +1,12 @@
+C(=C(/CCC)CC)(/CC)C
+C(#CCC)CC
+C1=CC=CC(=C1\C(C2=CC=CC=C2)=C(\C)C(C)Cl)C
+CC(C(C)C)Br
+C1(=CC=CC(=C1)C(C)CC(=O)O)[N+](=O)[O-]
+C1=CC=CC(=C1C=C(C(C(C)C)C(=O)[H])C(=O)[H])C2=CC=CC=C2
+C(=C(/C(C)C)CO)(/CC)C(C)Cl.Cl.[H].O
+C(OCC)(OC(C)=O)(OC(CC)C)OC(C)C
+C(CC(CC(=O)O)C)C(=O)O
+CCC(C(C(CC)CC(CC(C(CCCC)CCCC)C)C)C(C)C)CC(CC(C(CCCC)CCCC)C)C
+C(=C(/C/C(=C(/CC)C)C)C)(/C)C\C(=C(\CC)C)C
+CC(C)C.F.Cl.Br
