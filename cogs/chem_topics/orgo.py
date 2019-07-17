@@ -4,7 +4,7 @@ from discord.ext import commands
 #rdkit imports
 from rdkit import Chem
 from rdkit.Chem import Draw
-from rdkit.Chem.EnumerateStereoisomers import EnumerateStereoisomers, StereoEnumerationOptions
+from rdkit.Chem.EnumerateStereoisomers import EnumerateStereoisomers, StereoEnumerationOptions, GetStereoisomerCount
 #standard imports
 import random
 import os
@@ -38,13 +38,12 @@ class orgo(commands.Cog):
 
         # get answer based off of it
         m = Chem.MolFromSmiles(chemical)
-        opts = StereoEnumerationOptions(unique=True)
-        isomers = tuple(EnumerateStereoisomers(m, options=opts))
-        num_isomers = len(isomers)
+        opts = StereoEnumerationOptions(onlyUnassigned=False)
+        num_isomers = GetStereoisomerCount(m, opts)
 
         #ask the question
         quest = f'Question for **{ctx.author.display_name}**: (1 point)\n'
-        quest += f'\tHow many isomers does the drawing below have? Include cis-trans/E-Z isomers and stereoisomers.'
+        quest += f'\tWhat is the max theoretical number of isomers the drawing below can have? Include cis-trans/E-Z isomers and stereoisomers.'
         quest += '\nAnswer in format `submit answer`. Ex. `submit 3`.'
         
         Draw.MolToFile(m, f'images/{ctx.author.id}.png')
