@@ -2,7 +2,7 @@
 import asyncio, discord
 from discord.ext import commands
 #rdkit imports
-from  rdkit import Chem
+from rdkit import Chem
 from rdkit.Chem import Draw
 #standard imports
 import os
