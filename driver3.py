@@ -33,41 +33,15 @@ async def on_ready():
     print("Done!")
     logging.basicConfig(level=logging.INFO)
     await bot.change_presence(activity=discord.Game(name=tokens["prefix"] + "help"))
-
-#check owner
-def is_owner_check(message):
-    return message.author.id == tokens['author ID']
-def is_owner():
-    return commands.check(lambda ctx: is_owner_check(ctx.message))
-
-#reload extensions
-@bot.command(hidden=True)
-@is_owner()
-async def reload(ctx):
-    print("Reloading commands...")
-    counter = 0
-    total = 0
-    for ext in extensions:
-        try:
-            bot.reload_extension(ext)
-            print(f'\t{ext} loaded')
-            counter += 1
-        except Exception as e:
-            print(f'\tFailed to load extension {ext}', file=sys.stderr)
-            await ctx.send(f'Failed to load {ext}')
-            traceback.print_exc()
-        total += 1
-    
-    print("Done!")
-    await ctx.send(f'{counter} out of {total} extensions loaded')
-
     
 #end this man's whole career
 @bot.command(hidden=True)
-@is_owner()
 async def stop(ctx):
-    await ctx.send('Logging out!')
-    await bot.logout()
+    if ctx.author.id == tokens['author ID']:
+        await ctx.send('Logging out!')
+        await bot.logout()
+    else:
+        await ctx.send("You can't tell me what to do!")
 
 #bot token
 bot.run(tokens['discord'])
