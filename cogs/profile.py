@@ -73,18 +73,6 @@ class profile(commands.Cog):
         for row in leaderboard:
             output += f"{i+1}: {ctx.guild.get_user_info(int(row[0])).display_name()}\n"
         await ctx.send(output)
-    
-    #tester commands
-    @commands.command(hidden=True)
-    async def p2test(self, ctx, add: bool, pts: int):
-        if add:
-            await self.add_pts(ctx.author.id, ctx.guild.id, pts)
-        else:
-            asdf = await self.sub_pts(ctx.author.id, pts)
-            if asdf:
-                await ctx.send('points subtracted!')
-            else:
-                await ctx.send('not enough points -_-')
 
 def setup(bot):
     bot.add_cog(profile(bot))
