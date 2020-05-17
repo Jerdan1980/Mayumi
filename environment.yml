@@ -1,9 +1,0 @@
-name: discord
-channels:
-  - rdkit
-dependencies:
-  - python=3.6
-  - rdkit
-  - pip
-  - pip:
-    - discord.py
