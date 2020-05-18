@@ -7,9 +7,9 @@
 		"node": "13.6.0",
 		"npm": "6.13.4"
 	},
-	"main": "driver.js",
+	"main": "app.js",
 	"scripts": {
-		"start": "node driver.js",
+		"start": "node app.js",
 		"install-audit": "npm install && npm audit fix"
 	},
 	"authors": [
