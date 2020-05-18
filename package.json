@@ -1,0 +1,31 @@
+{
+	"name": "Mayumi",
+	"version": "4.0.0",
+	"description": "multipurpose discord bot",
+	"private": true,
+	"engines": {
+		"node": "13.6.0",
+		"npm": "6.13.4"
+	},
+	"main": "app.js",
+	"scripts": {
+		"start": "node app.js",
+		"install-audit": "npm install && npm audit fix"
+	},
+	"authors": [
+		"Jerdan1980"
+	],
+	"dependencies": {
+		"@discordjs/opus": "^0.3.2",
+		"axios": "^0.19.2",
+		"discord.js": "^12.2.0"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Jerdan1980/Mayumi.git"
+	},
+	"bugs": {
+		"url": "https://github.com/Jerdan1980/Mayumi/issues"
+	},
+	"homepage": "https://github.com/Jerdan1980/Mayumi#readme"
+}
