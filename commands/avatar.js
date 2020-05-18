@@ -1,3 +1,5 @@
+const Discord = require('discord.js');
+
 module.exports = {
 	name: 'avatar',
 	description: 'Get the avatar URL of the tagged user(s), or your own avatar.',
@@ -5,7 +7,10 @@ module.exports = {
 	cooldown: 5,
 	execute(message) {
 		if(!message.mentions.users.size) {
-			return message.channel.send(`Your avatar: <${message.author.displayAvatarURL({ dynamic: true })}>`);
+			const embed = new Discord.MessageEmbed()
+				.setTitle('Your avatar:')
+				.setImage(message.author.displayAvatarURL({ dynamic: true }));
+			return message.channel.send(embed);
 		}
 
 		const avatarList = message.mentions.users.map(user => {
