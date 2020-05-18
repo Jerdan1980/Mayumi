@@ -24,10 +24,10 @@ module.exports = {
 							return message.channel.send(data, {split: true});
 						})
 						.catch((error) => {
-							return message.channel.send(`Error: \`${error}\``);
+							return message.channel.send(formatError(error));
 						});	
 				} catch (error) {
-					return message.channel.send(`Error: \`${error}\``)
+					return message.channel.send(formatError(error))
 				}
 				break;
 			case 'railjack':
@@ -44,10 +44,10 @@ module.exports = {
 							}
 						})
 						.catch((error) => {
-							return message.channel.send(`Error: \`${error}\``);
+							return message.channel.send(formatError(error));
 						});	
 				} catch (error) {
-					return message.channel.send(`Error: \`${error}\``)
+					return message.channel.send(formatError(error))
 				}
 				break;
 			case 'sortie':
@@ -71,10 +71,10 @@ module.exports = {
 							}
 						})
 						.catch((error) => {
-							return message.channel.send(`Error: \`${error}\``);
+							return message.channel.send(formatError(error));
 						});	
 				} catch (error) {
-					return message.channel.send(`Error: \`${error}\``)
+					return message.channel.send(formatError(error))
 				}
 				break;
 			case 'baro':
@@ -97,10 +97,10 @@ module.exports = {
 							}
 						})
 						.catch((error) => {
-							return message.channel.send(`Error: \`${error}\``);
+							return message.channel.send(formatError(error));
 						});	
 				} catch (error) {
-					return message.channel.send(`Error: \`${error}\``)
+					return message.channel.send(formatError(error))
 				}
 				break;
 			break;
@@ -108,4 +108,12 @@ module.exports = {
 				message.channel.send('Incorrect arguments. please try again.');
 		}
 	}
+}
+
+function formatError(err) {
+	const embed = new Discord.MessageEmbed()
+		.setTitle("Error")
+		.setDescription (err);
+
+	return embed;
 }
