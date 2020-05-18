@@ -17,6 +17,7 @@
 	],
 	"dependencies": {
 		"@discordjs/opus": "^0.3.2",
+		"axios": "^0.19.2",
 		"discord.js": "^12.2.0"
 	},
 	"repository": {
