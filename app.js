@@ -1,5 +1,6 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
+const config = require('./config.json')
 
 const fs = require('fs');
 
@@ -13,9 +14,4 @@ client.on('message', msg => {
   }
 });
 
-fs.readFile('config.json', 'utf8', (err, data) => {
-	if (err) throw err;
-	let config = JSON.parse(data);
-	console.log(config);
-	client.login(config['discord']);
-})
+client.login(config.discord);
