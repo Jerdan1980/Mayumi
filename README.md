@@ -6,6 +6,7 @@ A multipurpose discord bot
 ## Requirements
  - Node.js 13.6.0+
  - npm 6.13.4+
+ - Python 3.8.0+
  - A valid internet connection
 ## Installation
 1. Clone the github repo
