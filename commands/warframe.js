@@ -89,11 +89,11 @@ module.exports = {
 								const data = []
 								data.push("**Baro's inventory:**");
 								body.inventory.map((item) => {
-									data.push(`__${item.ItemType}__ ${item.PrimePrice} ducats and ${item.RegularPrice} credits`);
+									data.push(`__${item.item}__ ${item.ducats} ducats and ${item.credits / 1000}k credits`);
 								});
 								data.push(`_Leaving in ${body.endString}~_`);
 
-								return message.channel.send(embed);
+								return message.channel.send(data);
 							}
 						})
 						.catch((error) => {
@@ -103,7 +103,36 @@ module.exports = {
 					return message.channel.send(formatError(error))
 				}
 				break;
-			break;
+			case 'nightwave':
+				try {
+					axios.get('https://api.warframestat.us/pc')
+						.then((response) => {
+							const body = response.data.nightwave;
+
+							if(body.active) {
+								const embed = new Discord.MessageEmbed()
+									.setTitle("Today's nightwave")
+									.addFields (
+										body.activeChallenges.map((challenge) => {
+											return {
+												name: `**${challenge.title}**: ${challenge.isDaily ? 'Daily' : 'Weekly'}, ${challenge.reputation}`,
+												value: challenge.desc
+											}
+										})
+									);
+
+								return message.channel.send(embed);
+							} else {
+								return message.channel.send("Nightwave is not active currently.");
+							}
+						})
+						.catch((error) => {
+							return message.channel.send(formatError(error));
+						});	
+				} catch (error) {
+					return message.channel.send(formatError(error))
+				}
+				break;
 			default:
 				message.channel.send('Incorrect arguments. please try again.');
 		}

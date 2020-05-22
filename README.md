@@ -5,8 +5,10 @@ A multipurpose discord bot
 # Hosting Mayumi
 ## Requirements
  - Node.js 13.6.0+
- - npm 6.13.4+
- - A valid internet connection
+ - npm 6.13.4+ (comes with Node.js)
+ - Python 3.8.0+
+ - Visual Studio 2015 or Newer
+The Python and VS 2015 requirements can be installed by checking 'install additional tools' when installing Node.js
 ## Installation
 1. Clone the github repo
 2. Open terminal and run `npm run install-audit` on the main directory
