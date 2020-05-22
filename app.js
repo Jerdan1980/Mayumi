@@ -13,16 +13,35 @@ for (const file of commandFiles) {
 	//with the key as the command name and the value as the exported modlue
 	client.commands.set(command.name, command);
 }
+//that one command
+const wfItems = require('./commands/warframe/wf-items.js');
 
 const cooldowns = new Discord.Collection();
+let wfRegexp = /\|[\w\s]+\|(?!\|)/gim; //regex for wf-items
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
 });
 
 client.on('message', message => {
-	//parse messages
-	if (!message.content.startsWith(prefix) || message.author.bot) return;
+	//make sure its not a bot first!
+	if(message.author.bot) return;
+
+	//check for wf item
+	if(wfRegexp.test(message.content)) {
+		message.content.match(wfRegexp).forEach(item => {
+			try {
+				wfItems.execute(message, item);
+			} catch (error) {
+				console.error(error);
+				message.reply('there was an error trying to execute that command!');
+			}
+		});
+		return
+	}
+
+	//parse messages for commands
+	if (!message.content.startsWith(prefix)) return;
 	const args = message.content.slice(prefix.length).split(/ +/);
 	const commandName = args.shift().toLowerCase();
 

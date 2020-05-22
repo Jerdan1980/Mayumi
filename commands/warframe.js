@@ -1,140 +1,57 @@
-const axios = require('axios');
+const fs = require('fs');
+//const axios = require('axios');
 const Discord = require('discord.js');
+
+const commands = new Discord.Collection();
+
+//grab subcommands
+const commandFiles = fs.readdirSync('./commands/warframe').filter(file => file.endsWith('.js'));
+for (const file of commandFiles) {
+	const command = require(`./warframe/${file}`);
+	//set a new item in the Collection
+	//with the key as the command name and the value as the exported modlue
+	commands.set(command.name, command);
+}
 
 module.exports = {
 	name: 'warframe',
+	aliases: ['wf'],
 	description: 'All the stuff about warframe!',
 	args: true,
-	aliases: ['wf'],
+	usage: `<sub-command>`,
 	cooldown: 10,
 	execute(message, args) {
-		switch(args[0].toLowerCase()) {
-			case 'time':
-				try {
-					axios.get('https://api.warframestat.us/pc')
-						.then((response) => {
-							const body = response.data;
-							
-							const data = [];
-							data.push("Here are the worldstates:");
-							data.push(`**Earth:** ${body.earthCycle.state} for ${body.earthCycle.timeLeft}`);
-							data.push(`**Cetus:** ${body.cetusCycle.state} for ${body.cetusCycle.timeLeft}`);
-							data.push(`**Orb Vallis:** ${body.vallisCycle.state} for ${body.vallisCycle.timeLeft}`);
+		//check if command exists
+		const command = commands.get(args[0]) || 
+			commands.find(cmd => cmd.aliases && cmd.aliases.includes(args[0]));
+		if (!command) {
+			return message.reply('Command does not exist!');
+		}
 
-							return message.channel.send(data, {split: true});
-						})
-						.catch((error) => {
-							return message.channel.send(formatError(error));
-						});	
-				} catch (error) {
-					return message.channel.send(formatError(error))
-				}
-				break;
-			case 'railjack':
-			case 'rj':
-				try {
-					axios.get('https://api.warframestat.us/pc')
-						.then((response) => {
-							const body = response.data.sentientOutposts;
-							
-							if(body.active) {
-								return message.channel.send(`Sentient outpost at \`${body.mission.node}\``);
-							} else {
-								return message.channel.send(`No sentient outposts active`);
-							}
-						})
-						.catch((error) => {
-							return message.channel.send(formatError(error));
-						});	
-				} catch (error) {
-					return message.channel.send(formatError(error))
-				}
-				break;
-			case 'sortie':
-				try {
-					axios.get('https://api.warframestat.us/pc')
-						.then((response) => {
-							const body = response.data.sortie.variants;
+		//if so, remove the wf argument
+		args.shift();
 
-							if(args[1] && args[1].toLowerCase() === 'full') {
-								const embed = new Discord.MessageEmbed()
-									.setTitle("Today's sortie")
-									.addFields (
-										{name: `Mission 1: **${body[0].missionType}**`, value: `${body[0].node}, ${body[0].modifier}`},
-										{name: `Mission 2: **${body[1].missionType}**`, value: `${body[1].node}, ${body[1].modifier}`},
-										{name: `Mission 3: **${body[2].missionType}**`, value: `${body[2].node}, ${body[2].modifier}`},
-									);
+		//check if guild only command
+		if (command.guildOnly && message.channel.type !== 'text') {
+			return message.reply('I can\'t execute that command inside DMs!');
+		}
 
-								return message.channel.send(embed);
-							} else {
-								return message.channel.send(`Today's sortie: ${body[0].missionType}, ${body[1].missionType}, ${body[2].missionType}`);
-							}
-						})
-						.catch((error) => {
-							return message.channel.send(formatError(error));
-						});	
-				} catch (error) {
-					return message.channel.send(formatError(error))
-				}
-				break;
-			case 'baro':
-				try {
-					axios.get('https://api.warframestat.us/pc')
-						.then((response) => {
-							const body = response.data.voidTrader;
-							
-							if(!body.active) {
-								return message.channel.send(`Baro arriving in ${body.startString}`);
-							} else {
-								const data = []
-								data.push("**Baro's inventory:**");
-								body.inventory.map((item) => {
-									data.push(`__${item.item}__ ${item.ducats} ducats and ${item.credits / 1000}k credits`);
-								});
-								data.push(`_Leaving in ${body.endString}~_`);
+		//check for correct number of arguments
+		if (command.args && !args.length) {
+			let reply = `You didn't provide any arguments, ${message.author}!`;
+			//add usage for good UX
+			if (command.usage) {
+				reply += `\nThe proper usage would be: \`${prefix}${command.name} ${command.usage}\``;
+			}
+			return message.channel.send(reply)
+		}
 
-								return message.channel.send(data);
-							}
-						})
-						.catch((error) => {
-							return message.channel.send(formatError(error));
-						});	
-				} catch (error) {
-					return message.channel.send(formatError(error))
-				}
-				break;
-			case 'nightwave':
-				try {
-					axios.get('https://api.warframestat.us/pc')
-						.then((response) => {
-							const body = response.data.nightwave;
-
-							if(body.active) {
-								const embed = new Discord.MessageEmbed()
-									.setTitle("Today's nightwave")
-									.addFields (
-										body.activeChallenges.map((challenge) => {
-											return {
-												name: `**${challenge.title}**: ${challenge.isDaily ? 'Daily' : 'Weekly'}, ${challenge.reputation}`,
-												value: challenge.desc
-											}
-										})
-									);
-
-								return message.channel.send(embed);
-							} else {
-								return message.channel.send("Nightwave is not active currently.");
-							}
-						})
-						.catch((error) => {
-							return message.channel.send(formatError(error));
-						});	
-				} catch (error) {
-					return message.channel.send(formatError(error))
-				}
-				break;
-			default:
-				message.channel.send('Incorrect arguments. please try again.');
+		//actually run the command
+		try {
+			command.execute(message, args);
+		} catch (error) {
+			console.error(error);
+			message.reply('there was an error trying to execute that command!');
 		}
 	}
 }
