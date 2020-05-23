@@ -1,7 +1,7 @@
 const axios = require('axios');
 
 module.exports = {
-	name: 'railjack',
+	name: 'nightwave',
 	description: 'Check nightwave status',
 	execute(message, args) {
 		try {
