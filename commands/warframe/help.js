@@ -1,6 +1,6 @@
 module.exports = {
-	name: 'help wf',
-	description: 'help wf',
+	name: 'help',
+	description: 'help',
 	execute(message, args) {
 		message.channel.send('Commands include baro, nightwave, ralijack, sortie and time.');
 	}
