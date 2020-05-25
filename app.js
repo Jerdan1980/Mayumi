@@ -14,7 +14,7 @@ for (const file of commandFiles) {
 	client.commands.set(command.name, command);
 }
 //that one command
-const wfItems = require('./commands/warframe/wf-items.js');
+const wfItems = require('./commands/warframe/items.js');
 
 const cooldowns = new Discord.Collection();
 let wfRegexp = /\|[\w\s]+\|(?!\|)/gim; //regex for wf-items
