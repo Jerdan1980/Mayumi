@@ -67,7 +67,8 @@ module.exports = {
 									body.enemies.map(enemy => {
 										return {
 											name: `${enemy.enemyName}`,
-											value: `${enemy.rarity}: ${enemy.chance}%`
+											value: `${enemy.rarity}: ${enemy.chance}%`,
+											inline: true
 										}
 									})
 								);
@@ -100,7 +101,8 @@ module.exports = {
 									body.enemies.map(enemy => {
 										return {
 											name: `${enemy.enemyName}`,
-											value: `${enemy.rarity}: ${enemy.chance}%`
+											value: `${enemy.rarity}: ${enemy.chance}%`,
+											inline: true
 										}
 									})
 								);
