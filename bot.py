@@ -8,6 +8,7 @@ import asyncio, discord
 from discord.ext import commands
 import discord.utils
 import logging
+from discord.ext.commands import CommandNotFound
 
 #load config file
 with open('config.json') as file:
@@ -95,6 +96,14 @@ async def reload(ctx, *, ext=''):
 async def stop(ctx):
 	await ctx.send('Logging out!')
 	await bot.logout()
+
+#command not found listener
+@bot.event
+async def on_command_error(ctx, error):
+	if isinstance(error, CommandNotFound):
+		await ctx.send("Command does not exist! Maybe you made a typo?")
+		return
+	raise error
 
 #start bot
 bot.run(config['discord'])
