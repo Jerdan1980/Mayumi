@@ -1,0 +1,5 @@
+{
+  "discord": "insert bot token here",
+  "prefix": "$",
+  "authors": ["insert your user ID here as a string"]
+}
