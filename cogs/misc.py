@@ -25,5 +25,13 @@ class misc(commands.Cog):
 	async def avatar(self, ctx):
 		await ctx.send(file=discord.File("Mayumi pfp.png"))
 
+	@commands.command()
+	async def lol(self, ctx):
+		await ctx.send('REPLY NOW')
+		def check(m):
+			return m.author.id == ctx.author.id
+		msg = await self.bot.wait_for('message', check=check)
+		await ctx.send('YOU HAVE REPLIED')
+
 def setup(bot):
 	bot.add_cog(misc(bot))
