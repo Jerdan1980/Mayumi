@@ -392,10 +392,15 @@ yarn-error.log*
 
 #config file containing tokens
 config.json
+pyvenv.cfg
 
-#venv stuff
+#linux venv stuff
 lib
 lib64
 share
 include
-pyvenv.cfg
+
+#windows venv stuff
+Include
+Lib
+Scripts
